@@ -20,7 +20,7 @@ export interface AppState {
   milestones: Record<string, MilestoneProgress>;
   gear: GearSetup[];
   methods: XpMethod[];
-  ui: { tab: 'next' | 'goals' | 'todo' | 'stats'; expanded: boolean; womUpdateRequested: boolean };
+  ui: { tab: 'next' | 'goals' | 'todo' | 'stats' | 'browse'; expanded: boolean; womUpdateRequested: boolean };
 
   setPlayer: (p: PlayerData) => void;
   setLiveLevels: (l: LiveLevels) => void;

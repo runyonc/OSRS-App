@@ -5,6 +5,7 @@ import NextUp from './components/NextUp';
 import Goals from './components/Goals';
 import Todo from './components/Todo';
 import Stats from './components/Stats';
+import Browse from './components/Browse';
 import ImportDialog from './components/ImportDialog';
 import { refreshAll } from './services/refresh';
 import { GUIDE_URL } from './config';
@@ -15,6 +16,7 @@ const TABS = [
   { id: 'goals', label: 'Goals', icon: 'diary' },
   { id: 'todo', label: 'Todo', icon: 'coins' },
   { id: 'stats', label: 'Stats', icon: 'stats' },
+  { id: 'browse', label: 'Browse', icon: 'skills' },
 ] as const;
 
 export default function App() {
@@ -37,6 +39,7 @@ export default function App() {
         {tab === 'goals' ? <Goals /> : null}
         {tab === 'todo' ? <Todo /> : null}
         {tab === 'stats' ? <Stats /> : null}
+        {tab === 'browse' ? <Browse /> : null}
         <footer className="mt-8 text-center text-[11px] leading-relaxed text-zinc-600">
           Guide content and icons from the <a className="underline" href={GUIDE_URL} target="_blank" rel="noreferrer">OSRS Wiki — Optimal quest guide/Ironman</a>, licensed{' '}
           <a className="underline" href="https://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank" rel="noreferrer">CC BY-NC-SA 3.0</a>.
@@ -51,7 +54,7 @@ export default function App() {
               <button
                 key={t.id}
                 onClick={() => setTab(t.id)}
-                className={`flex flex-1 flex-col items-center gap-0.5 py-2 text-xs ${tab === t.id ? 'text-amber-400' : 'text-zinc-400'}`}
+                className={`flex flex-1 flex-col items-center gap-0.5 py-2 text-[11px] ${tab === t.id ? 'text-amber-400' : 'text-zinc-400'}`}
                 aria-current={tab === t.id ? 'page' : undefined}
               >
                 <SkillIcon skill={t.icon} size={20} className={tab === t.id ? '' : 'opacity-70 grayscale-[30%]'} />
