@@ -1,4 +1,5 @@
-# Deploys the static build to GitHub Pages. Enable Pages (Settings → Pages → Source: GitHub Actions) to activate.
+# Deploys the static build to GitHub Pages. The configure-pages step enables Pages (source: GitHub Actions)
+# on first run; if the account cannot host Pages for this repository, enable it under Settings → Pages.
 name: Deploy to GitHub Pages
 
 on:
@@ -24,6 +25,9 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - run: npm ci
       - run: npm test
       - run: npx vite build
