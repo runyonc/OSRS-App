@@ -1,5 +1,4 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'node:fs';
 import { MILESTONES, MILESTONE_BY_ID } from '../src/data/milestones';
 import { combatLevel, milestoneStatus, readyMilestones, allMilestoneStatuses, milestoneQuestPrereqs, milestoneSkillPrereqs } from '../src/lib/milestones';
 import { parseWikiSyncExport } from '../src/lib/wikisync';
@@ -10,7 +9,8 @@ import guideJson from '../src/data/guide.json';
 import reqsJson from '../src/data/questReqs.json';
 import type { GuideStep, QuestReqs } from '../src/lib/types';
 
-const player = parseWikiSyncExport(readFileSync(new URL('../fixtures/wikisync-2025-10-31.json', import.meta.url), 'utf8'), Date.parse('2025-10-31T23:00:00Z'));
+import initialImport from '../src/data/initialImport.json';
+const player = parseWikiSyncExport(initialImport, Date.parse('2026-11-07T03:00:00Z'));
 const levels = effectiveLevels(player, null).levels;
 const ctx = { player, levels, manual: {} };
 const steps = guideJson.steps as GuideStep[];
@@ -37,7 +37,7 @@ describe('milestone data', () => {
 
 describe('combat level', () => {
   it('matches the Wise Old Man combat level for the fixture levels', () => {
-    expect(combatLevel(levels)).toBe(79);
+    expect(combatLevel(levels)).toBe(81);
   });
   it('uses the standard formula', () => {
     const l = (n: number) => ({ level: n });

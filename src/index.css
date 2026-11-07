@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 html { -webkit-tap-highlight-color: transparent; }
+body {
+  background-color: #17120c;
+  background-image:
+    radial-gradient(ellipse at top, rgba(255, 152, 31, 0.06), transparent 60%),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.012) 0 2px, transparent 2px 4px);
+}
+.card { background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent); }
+.osrs-frame { border: 2px solid #4a3c2a; box-shadow: inset 0 0 0 1px #17120c, inset 0 0 0 2px #6b5a40; }
 body { padding-bottom: env(safe-area-inset-bottom); }
 
 .btn { @apply inline-flex items-center justify-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium transition active:scale-95 disabled:opacity-40 disabled:active:scale-100; }

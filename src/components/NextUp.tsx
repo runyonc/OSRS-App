@@ -8,6 +8,7 @@ import { milestoneStatus } from '../lib/milestones';
 import { MILESTONE_BY_ID } from '../data/milestones';
 import { useLevels } from '../hooks/useDerived';
 import MilestoneCard from './MilestoneCard';
+import SkillIcon from './SkillIcon';
 import { skillLabel } from '../lib/xp';
 import { NEXT_UP_DEFAULT, NEXT_UP_EXPANDED } from '../config';
 
@@ -66,7 +67,7 @@ export default function NextUp({ onImport }: { onImport: () => void }) {
           <ul className="space-y-0.5">
             {pinnedLines.map(({ goal, step, readyNow }) => (
               <li key={goal.id} className="flex gap-2">
-                <span className="text-violet-300">📌 {goal.label}</span>
+                <span className="text-violet-300">{goal.type === 'skill' ? <SkillIcon skill={goal.target.split(':')[0]} size={13} /> : '📌'} {goal.label}</span>
                 <span className={readyNow ? 'text-emerald-300' : 'text-zinc-400'}>{readyNow ? '→ ready now, go get it' : step ? `→ next: ${step.name}` : '→ no step in the next 20 helps this yet'}</span>
               </li>
             ))}

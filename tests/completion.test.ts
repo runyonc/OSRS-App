@@ -1,5 +1,4 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'node:fs';
 import { parseWikiSyncExport } from '../src/lib/wikisync';
 import { parseWomPlayer } from '../src/lib/wom';
 import {
@@ -12,8 +11,8 @@ import type { GuideStep, QuestReqs } from '../src/lib/types';
 
 const steps = guideJson.steps as GuideStep[];
 const reqs = reqsJson.reqs as Record<string, QuestReqs>;
-const exportText = readFileSync(new URL('../fixtures/wikisync-2025-10-31.json', import.meta.url), 'utf8');
-const player = parseWikiSyncExport(exportText, Date.parse('2025-10-31T23:00:00Z'));
+import initialImport from '../src/data/initialImport.json';
+const player = parseWikiSyncExport(initialImport, Date.parse('2026-11-07T03:00:00Z'));
 const levels = effectiveLevels(player, null).levels;
 const byName = (n: string) => steps.find((s) => s.name === n)!;
 
@@ -25,8 +24,8 @@ describe('WikiSync import', () => {
     expect(player.diaries.Ardougne.Easy?.complete).toBe(true);
     expect(player.levels.agility.level).toBeGreaterThan(1);
     expect(player.levels.sailing).toBeDefined(); // unknown/new skills must not crash
-    expect(player.combatAchievements.length).toBe(7);
-    expect(player.exportedAt).toBe(Date.parse('2025-10-31T22:14:09Z'));
+    expect(player.combatAchievements).toEqual([80, 122]);
+    expect(player.exportedAt).toBe(Date.parse('2026-11-07T02:46:22.194Z'));
   });
 
   it('rejects exports without a quests map', () => {
@@ -39,12 +38,12 @@ describe('name matching', () => {
     expect(normalizeName("Cook’s Assistant")).toBe(normalizeName("Cook's Assistant"));
     expect(normalizeName('Fairytale II - Cure a Queen')).toBe(normalizeName('Fairytale II – Cure a Queen'));
     expect(normalizeName('Rag and Bone Man II')).toBe('rag and bone man 2');
-    expect(findQuestKey('Recipe for Disaster/Freeing Evil Dave', player.quests)).toBe('Recipe for Disaster - Freeing Evil Dave');
+    expect(findQuestKey('Recipe for Disaster/Freeing Evil Dave', player.quests)).toBe('Recipe for Disaster - Evil Dave');
     expect(findQuestKey('Not A Quest', player.quests)).toBeUndefined();
   });
 });
 
-describe('completion rules (10/31 export)', () => {
+describe('completion rules (bundled export)', () => {
   it('marks Learning the Ropes, Cook\'s Assistant and The Restless Ghost done and leaves them out of Next Up', () => {
     for (const n of ['Learning the Ropes', "Cook's Assistant", 'The Restless Ghost']) {
       expect(isStepDone(byName(n), player, {})).toEqual({ done: true, source: 'import' });
@@ -57,10 +56,10 @@ describe('completion rules (10/31 export)', () => {
   });
 
   it('pins in-progress quests to the top as In progress', () => {
-    const next = selectNextUp({ steps, player, progress: {}, reqs, levels, goals: [], limit: 5 });
-    expect(next).toHaveLength(5);
+    const next = selectNextUp({ steps, player, progress: {}, reqs, levels, goals: [], limit: 6 });
+    expect(next).toHaveLength(6);
     const pinned = next.filter((n) => n.inProgress).map((n) => n.step.quest);
-    expect(pinned.slice().sort()).toEqual(['Animal Magnetism', 'Fairytale II - Cure a Queen', 'Imp Catcher', 'Prince Ali Rescue', 'Rag and Bone Man II']);
+    expect(pinned.slice().sort()).toEqual(['Animal Magnetism', 'Creature of Fenkenstrain', 'Fairytale II - Cure a Queen', 'Imp Catcher', 'Prince Ali Rescue', 'Rag and Bone Man II']);
     // In-progress quests keep guide order among themselves.
     const orders = next.filter((n) => n.inProgress).map((n) => n.step.order);
     expect(orders).toEqual(orders.slice().sort((a, b) => a - b));
@@ -127,14 +126,14 @@ describe('completion rules (10/31 export)', () => {
 
   it('derives quest points from completed guide quests', () => {
     const qp = questPoints(steps, player, {});
-    expect(qp).toBeGreaterThan(50);
+    expect(qp).toBeGreaterThan(80);
     expect(qp).toBeLessThan(200);
   });
 });
 
 describe('levels', () => {
   it('prefers the newer of the WOM snapshot and the import', () => {
-    const wom = parseWomPlayer({ updatedAt: '2025-11-05T21:57:05Z', combatLevel: 79, type: 'ironman', latestSnapshot: { createdAt: '2025-11-05T21:57:05Z', data: { skills: { overall: { level: 1000, experience: 1 }, agility: { level: 60, experience: 300000 } } } } });
+    const wom = parseWomPlayer({ updatedAt: '2026-11-08T21:57:05Z', combatLevel: 81, type: 'ironman', latestSnapshot: { createdAt: '2026-11-08T21:57:05Z', data: { skills: { overall: { level: 1000, experience: 1 }, agility: { level: 60, experience: 300000 } } } } });
     expect(wom.levels.agility).toEqual({ level: 60, xp: 300000 });
     expect(effectiveLevels(player, wom).source).toBe('wom');
     expect(effectiveLevels(player, wom).levels.agility.level).toBe(60);

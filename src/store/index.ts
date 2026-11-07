@@ -4,6 +4,8 @@ import type { PlayerData, LiveLevels, GuideStep, QuestReqs, StepProgress, Goal, 
 import guideJson from '../data/guide.json';
 import reqsJson from '../data/questReqs.json';
 import { DEFAULT_FLAG_NOTES } from '../lib/completion';
+import { parseWikiSyncExport } from '../lib/wikisync';
+import initialImport from '../data/initialImport.json';
 import { STORAGE_KEY, MAX_PINNED_GOALS } from '../config';
 
 export interface AppState {
@@ -52,6 +54,11 @@ export interface AppState {
 
 const bundledGuide = { fetchedAt: (guideJson as any).fetchedAt as number, steps: (guideJson as any).steps as GuideStep[], source: 'bundled' as const };
 const bundledReqs = (reqsJson as any).reqs as Record<string, QuestReqs>;
+/** The export bundled with the app, so a fresh install starts with the player's quests and diaries. */
+export const INITIAL_PLAYER: PlayerData = (() => {
+  const p = parseWikiSyncExport(initialImport);
+  return { ...p, importedAt: p.exportedAt ?? p.importedAt };
+})();
 
 export const PERSISTED_KEYS = ['player', 'liveLevels', 'guide', 'questReqs', 'progress', 'goals', 'todos', 'flags', 'milestones', 'gear', 'methods', 'ui'] as const;
 
@@ -60,7 +67,7 @@ const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(
 export const useStore = create<AppState>()(
   persist(
     (set, get) => ({
-      player: null,
+      player: INITIAL_PLAYER,
       liveLevels: null,
       guide: bundledGuide,
       questReqs: bundledReqs,
@@ -157,7 +164,7 @@ export const useStore = create<AppState>()(
         for (const k of PERSISTED_KEYS) if (k in data) (patch as any)[k] = data[k];
         set(patch);
       },
-      resetAll: () => set({ player: null, liveLevels: null, guide: bundledGuide, questReqs: bundledReqs, progress: {}, goals: [], todos: [], flags: { ...DEFAULT_FLAG_NOTES }, milestones: {}, gear: [], methods: [], ui: { tab: 'next', expanded: false, womUpdateRequested: false } }),
+      resetAll: () => set({ player: INITIAL_PLAYER, liveLevels: null, guide: bundledGuide, questReqs: bundledReqs, progress: {}, goals: [], todos: [], flags: { ...DEFAULT_FLAG_NOTES }, milestones: {}, gear: [], methods: [], ui: { tab: 'next', expanded: false, womUpdateRequested: false } }),
     }),
     {
       name: STORAGE_KEY,
@@ -170,6 +177,8 @@ export const useStore = create<AppState>()(
         merged.questReqs = { ...bundledReqs, ...(persisted?.questReqs ?? {}) };
         merged.flags = { ...DEFAULT_FLAG_NOTES, ...(persisted?.flags ?? {}) };
         merged.milestones = persisted?.milestones ?? {};
+        // Never show an older import than the one bundled with the app.
+        if (!persisted?.player || (persisted.player.importedAt ?? 0) < INITIAL_PLAYER.importedAt) merged.player = INITIAL_PLAYER;
         merged.gear = persisted?.gear ?? [];
         merged.methods = persisted?.methods ?? [];
         merged.ui = { tab: 'next', expanded: false, ...(persisted?.ui ?? {}), womUpdateRequested: false };

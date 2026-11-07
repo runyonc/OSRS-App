@@ -7,6 +7,7 @@ import { skillLabel } from '../lib/xp';
 import FlagBadges from './FlagBadge';
 import { useLevels } from '../hooks/useDerived';
 import { levelOf } from '../lib/completion';
+import SkillIcon from './SkillIcon';
 
 const TYPE_STYLE: Record<string, string> = {
   quest: 'bg-sky-900/60 text-sky-200',
@@ -51,15 +52,16 @@ export default function StepCard({ item, index }: { item: NextUpItem; index: num
           </h3>
           <div className="mt-0.5 flex flex-wrap gap-x-3 text-xs text-zinc-400">
             {step.location ? <span>📍 {step.location}</span> : null}
-            {step.qp ? <span>{step.qp} QP</span> : null}
-            {step.train && trainHave !== undefined ? <span>you: {trainHave}/{step.train.level}</span> : null}
+            {step.qp ? <span><SkillIcon skill="quest" size={13} /> {step.qp} QP</span> : null}
+            {step.train && trainHave !== undefined ? <span><SkillIcon skill={step.train.skill} size={13} /> you: {trainHave}/{step.train.level}</span> : null}
+            {step.diary ? <span><SkillIcon skill="diary" size={13} /> diary</span> : null}
           </div>
           {levelsAfter.length ? (
             <div className="mt-1 flex flex-wrap items-center gap-1">
               <span className="text-[10px] text-zinc-500" title="Levels the guide expects after this step, if you follow its lamp choices">guide after:</span>
               {levelsAfter.map(([skill, lvl]) => (
                 <span key={skill} className="chip bg-zinc-800 text-zinc-300" title={`${step.xpGained[skill]?.toLocaleString()} XP`}>
-                  {skillLabel(skill)} → {lvl}
+                  <SkillIcon skill={skill} size={13} /> {skillLabel(skill)} → {lvl}
                 </span>
               ))}
             </div>
@@ -75,7 +77,7 @@ export default function StepCard({ item, index }: { item: NextUpItem; index: num
                   className={`chip ${b.boostable ? 'bg-amber-900/70 text-amber-100' : 'bg-red-900/70 text-red-100'}`}
                   title={b.boostable ? 'Boostable — open training guide' : 'Open training guide'}
                 >
-                  Needs {b.needed} {skillLabel(b.skill)} (you: {b.have}){b.boostable ? ' · boostable' : ''} ↗
+                  <SkillIcon skill={b.skill} size={13} /> Needs {b.needed} {skillLabel(b.skill)} (you: {b.have}){b.boostable ? ' · boostable' : ''} ↗
                 </a>
               ))}
             </div>
