@@ -52,6 +52,16 @@ through without crashing.
 - Training / unlock / gather steps: manual check-off only.
 - Manual Done / Skip always win over imported data.
 
+## Stats tab
+
+- **Stats grid**: all 24 skills in the in-game order with level, XP and progress to the next level (XP from Wise
+  Old Man; the WikiSync import carries levels only), plus total level, combat level, total XP and quest points.
+- **XP calculator**: pick a skill and target level; current XP is prefilled and can be overridden. Enter a method's
+  XP per action (and optionally actions per hour) to get the number of actions and hours; saved methods stay with
+  the skill.
+- **Gear I'm using**: named setups (melee, ranged, Slayer…) with the 11 equipment slots and notes. Each filled slot
+  links to its wiki page.
+
 ## Milestones: gear, combat and Slayer
 
 The quest guide is the backbone, but an ironman also plans around gear and combat unlocks. `src/data/milestones.ts`
@@ -96,6 +106,6 @@ scripts/build-guide.ts   fetch wiki → src/data/{guide,questReqs,questNames}.js
 src/data/milestones.ts   curated gear / combat / Slayer milestones
 src/lib/                 wikitext parser, quest-requirements parser, WikiSync import, WOM client, completion + milestone logic
 src/store/               zustand store persisted to localStorage (ironPlanner:v1)
-src/components/          Header, NextUp/StepCard, MilestoneCard, Goals, Todo, ImportDialog, FlagBadge
+src/components/          Header, NextUp/StepCard, MilestoneCard, Goals, Todo, Stats, ImportDialog, FlagBadge
 tests/                   vitest suites
 ```

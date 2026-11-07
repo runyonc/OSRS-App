@@ -108,6 +108,23 @@ export interface Todo {
   createdAt: number;
 }
 
+export interface GearSetup {
+  id: string;
+  name: string;
+  slots: Record<string, string>;
+  notes: string;
+  createdAt: number;
+}
+
+export interface XpMethod {
+  id: string;
+  skill: string;
+  name: string;
+  xpPerAction: number;
+  /** Optional actions per hour, for a time estimate. */
+  perHour?: number;
+}
+
 export interface MilestoneProgress {
   done: boolean;
   at: number;

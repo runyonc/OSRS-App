@@ -4,6 +4,7 @@ import Header from './components/Header';
 import NextUp from './components/NextUp';
 import Goals from './components/Goals';
 import Todo from './components/Todo';
+import Stats from './components/Stats';
 import ImportDialog from './components/ImportDialog';
 import { refreshAll } from './services/refresh';
 import { GUIDE_URL } from './config';
@@ -12,6 +13,7 @@ const TABS = [
   { id: 'next', label: 'Next Up', icon: '🧭' },
   { id: 'goals', label: 'Goals', icon: '🎯' },
   { id: 'todo', label: 'Todo', icon: '☑️' },
+  { id: 'stats', label: 'Stats', icon: '📊' },
 ] as const;
 
 export default function App() {
@@ -33,6 +35,7 @@ export default function App() {
         {tab === 'next' ? <NextUp onImport={() => setImportOpen(true)} /> : null}
         {tab === 'goals' ? <Goals /> : null}
         {tab === 'todo' ? <Todo /> : null}
+        {tab === 'stats' ? <Stats /> : null}
         <footer className="mt-8 text-center text-[11px] leading-relaxed text-zinc-600">
           Guide content from the <a className="underline" href={GUIDE_URL} target="_blank" rel="noreferrer">OSRS Wiki — Optimal quest guide/Ironman</a>, licensed{' '}
           <a className="underline" href="https://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank" rel="noreferrer">CC BY-NC-SA 3.0</a>.
