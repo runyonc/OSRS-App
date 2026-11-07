@@ -50,7 +50,9 @@ function StatsGrid() {
               {pct !== null ? (
                 <div className="mt-1 h-1 w-full overflow-hidden rounded bg-zinc-800"><div className="h-full bg-amber-500" style={{ width: `${pct}%` }} /></div>
               ) : <div className="mt-1 h-1" />}
-              {xp != null ? <div className="mt-0.5 text-[10px] tabular-nums text-zinc-500">{fmt(xp)}</div> : <div className="mt-0.5 text-[10px] text-zinc-600">{v ? 'no XP in import' : ''}</div>}
+              {xp != null ? (
+                <div className="mt-0.5 text-[10px] tabular-nums text-zinc-500">{next ? `${fmt(next - xp)} to ${level + 1}` : `${fmt(xp)} XP`}</div>
+              ) : <div className="mt-0.5 text-[10px] text-zinc-600">{v ? 'no XP in import' : ''}</div>}
             </a>
           );
         })}
@@ -71,7 +73,7 @@ function XpCalculator() {
   const addMethod = useStore((s) => s.addMethod);
   const removeMethod = useStore((s) => s.removeMethod);
   const [skill, setSkill] = useState('agility');
-  const [target, setTarget] = useState(70);
+  const [targetOverride, setTargetOverride] = useState('');
   const [xpOverride, setXpOverride] = useState('');
   const [methodName, setMethodName] = useState('');
   const [perAction, setPerAction] = useState('');
@@ -80,7 +82,16 @@ function XpCalculator() {
   const known = levels[skill];
   const knownXp = known?.xp ?? (known ? xpForLevel(known.level) : 0);
   const currentXp = xpOverride.trim() ? Number(xpOverride) || 0 : knownXp;
+  const currentLevel = levelForXp(currentXp, 126);
+  const nextLevel = Math.min(126, currentLevel + 1);
+  const target = targetOverride.trim() ? Math.max(1, Math.min(126, Number(targetOverride) || nextLevel)) : nextLevel;
   const plan = useMemo(() => planXp(currentXp, target), [currentXp, target]);
+  const quick = [
+    { label: `Next (${nextLevel})`, value: '' },
+    { label: '+5', value: String(Math.min(126, currentLevel + 5)) },
+    { label: '+10', value: String(Math.min(126, currentLevel + 10)) },
+    { label: '99', value: '99' },
+  ];
   const skillMethods = methods.filter((m) => m.skill === skill);
   const liveMethod = Number(perAction) > 0 ? { name: methodName.trim() || 'this method', xpPerAction: Number(perAction), perHour: Number(perHour) > 0 ? Number(perHour) : undefined } : null;
 
@@ -89,13 +100,18 @@ function XpCalculator() {
       <h2 className="text-sm font-semibold">XP calculator</h2>
       <div className="mt-2 grid grid-cols-2 gap-2 text-sm">
         <label className="text-xs text-zinc-400">Skill
-          <select id="calc-skill" className="input mt-0.5" value={skill} onChange={(e) => { setSkill(e.target.value); setXpOverride(''); }}>
+          <select id="calc-skill" className="input mt-0.5" value={skill} onChange={(e) => { setSkill(e.target.value); setXpOverride(''); setTargetOverride(''); }}>
             {SKILLS.map((s) => <option key={s} value={s}>{skillLabel(s)}</option>)}
           </select>
         </label>
-        <label className="text-xs text-zinc-400">Target level
-          <input id="calc-target" className="input mt-0.5" type="number" min={2} max={126} value={target} onChange={(e) => setTarget(Number(e.target.value))} />
+        <label className="text-xs text-zinc-400">Target level <span className="text-zinc-500">(defaults to next)</span>
+          <input id="calc-target" className="input mt-0.5" type="number" min={2} max={126} placeholder={String(nextLevel)} value={targetOverride} onChange={(e) => setTargetOverride(e.target.value)} />
         </label>
+        <div className="col-span-2 flex flex-wrap gap-1">
+          {quick.map((q) => (
+            <button key={q.label} type="button" onClick={() => setTargetOverride(q.value)} className={`chip border ${(targetOverride.trim() || '') === q.value ? 'border-amber-500 bg-amber-500/20 text-amber-200' : 'border-zinc-700 bg-zinc-800 text-zinc-300'}`}>{q.label}</button>
+          ))}
+        </div>
         <label className="col-span-2 text-xs text-zinc-400">Current XP <span className="text-zinc-500">(from {known?.xp != null ? 'Wise Old Man' : known ? 'import level, XP estimated at the level floor' : 'nothing yet'}; type to override)</span>
           <input id="calc-xp" className="input mt-0.5 tabular-nums" inputMode="numeric" placeholder={fmt(knownXp)} value={xpOverride} onChange={(e) => setXpOverride(e.target.value.replace(/[^0-9]/g, ''))} />
         </label>
@@ -103,7 +119,7 @@ function XpCalculator() {
       <div className="mt-3 rounded-md bg-zinc-800/60 p-2 text-sm">
         <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
           <span>Level <b className="tabular-nums">{plan.currentLevel}</b> → <b className="tabular-nums">{plan.targetLevel}</b></span>
-          <span className="text-zinc-300"><b className="tabular-nums text-amber-300">{fmt(plan.remaining)}</b> XP to go</span>
+          <span className="text-zinc-300"><b className="tabular-nums text-amber-300">{fmt(plan.remaining)}</b> XP to {plan.targetLevel === nextLevel ? 'level up' : 'go'}</span>
           <span className="text-xs text-zinc-500 tabular-nums">{fmt(plan.currentXp)} / {fmt(plan.targetXp)}</span>
         </div>
         <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded bg-zinc-900"><div className="h-full bg-amber-500" style={{ width: `${Math.round(plan.progress * 100)}%` }} /></div>
