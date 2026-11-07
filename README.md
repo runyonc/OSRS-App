@@ -70,6 +70,13 @@ through without crashing.
   on task, salve amulet, berserker necklace, chaos gauntlets, tome of fire). Formulas follow the wiki's Maximum hit
   pages and every step is shown.
 
+## Browse tab
+
+- **Quests**: every quest and miniquest in the import with status (done / in progress / not started), quest points,
+  guide position and unmet skill requirements; filters and search.
+- **All guide steps**: the full ordered guide with status (done / in progress / pending / skipped), type filters,
+  search by name or location, expandable notes, and mark done / skip actions.
+
 ## Milestones: gear, combat and Slayer
 
 The quest guide is the backbone, but an ironman also plans around gear and combat unlocks. `src/data/milestones.ts`
