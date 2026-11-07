@@ -16,8 +16,29 @@ export default function Stats() {
     <section className="space-y-5">
       <StatsGrid />
       <XpCalculator />
+      <XpTable />
       <GearSetups />
     </section>
+  );
+}
+
+function XpTable() {
+  const { levels } = useLevels();
+  const current = new Set(Object.keys(levels).map((s) => levelOf(levels, s)));
+  const rows = Array.from({ length: 98 }, (_, i) => i + 2);
+  return (
+    <details className="card">
+      <summary className="cursor-pointer font-display text-sm font-semibold">XP table</summary>
+      <p className="mt-1 text-[11px] text-zinc-500">XP at which each level starts. Levels you currently sit at in some skill are highlighted.</p>
+      <div className="mt-2 grid grid-cols-2 gap-x-4 text-xs tabular-nums sm:grid-cols-3">
+        {rows.map((lvl) => (
+          <div key={lvl} className={`flex justify-between border-b border-zinc-800/60 py-0.5 ${current.has(lvl) ? 'text-amber-300' : 'text-zinc-300'}`}>
+            <span>{lvl}</span>
+            <span>{fmt(xpForLevel(lvl))}</span>
+          </div>
+        ))}
+      </div>
+    </details>
   );
 }
 
@@ -44,7 +65,7 @@ function StatsGrid() {
           const start = xpForLevel(level);
           const pct = xp != null && next ? Math.round(((xp - start) / (next - start)) * 100) : null;
           return (
-            <a key={skill} href={trainingUrl(skill)} target="_blank" rel="noreferrer" className={`rounded-md border px-2 py-1.5 ${v ? 'border-zinc-800 bg-zinc-900' : 'border-dashed border-zinc-800 bg-transparent'}`} title={xp != null ? `${fmt(xp)} XP${next ? ` · ${fmt(next - xp)} to ${level + 1}` : ''}` : skillLabel(skill)}>
+            <a key={skill} href={trainingUrl(skill)} target="_blank" rel="noreferrer" className={`rounded-md border px-2 py-1.5 ${v ? 'border-zinc-800 bg-zinc-900' : 'border-dashed border-zinc-800 bg-transparent'}`} title={xp != null && next ? `${fmt(xp)} XP · ${fmt(next - xp)} to level ${level + 1} (${fmt(next)})` : next ? `Level ${level + 1} starts at ${fmt(next)} XP` : skillLabel(skill)}>
               <div className="flex items-center justify-between gap-1">
                 <span className="flex min-w-0 items-center gap-1 text-[11px] text-zinc-400"><SkillIcon skill={skill} size={14} /><span className="truncate">{skillLabel(skill)}</span></span>
                 <span className={`text-sm font-semibold tabular-nums ${level >= 99 ? 'text-amber-300' : ''}`}>{v ? level : '—'}</span>
@@ -52,13 +73,15 @@ function StatsGrid() {
               {pct !== null ? (
                 <div className="mt-1 h-1 w-full overflow-hidden rounded bg-zinc-800"><div className="h-full bg-amber-500" style={{ width: `${pct}%` }} /></div>
               ) : <div className="mt-1 h-1" />}
-              {xp != null ? (
-                <div className="mt-0.5 text-[10px] tabular-nums text-zinc-500">{next ? `${fmt(next - xp)} to ${level + 1}` : `${fmt(xp)} XP`}</div>
-              ) : <div className="mt-0.5 text-[10px] text-zinc-600">{v ? 'no XP in import' : ''}</div>}
+              <div className="mt-0.5 text-[10px] leading-tight tabular-nums text-zinc-500">
+                <div className="text-zinc-400">{xp != null ? fmt(xp) : '\u00a0'}</div>
+                <div title={next ? `Level ${level + 1} starts at ${fmt(next)} XP` : undefined}>{next ? `next ${fmt(next)}` : 'maxed'}</div>
+              </div>
             </a>
           );
         })}
       </div>
+      <p className="mt-1 text-[10px] text-zinc-500">Under each level: your XP, then the XP the next level starts at.</p>
       <div className="mt-2 flex flex-wrap gap-x-4 text-xs text-zinc-400">
         <span><SkillIcon skill="skills" size={14} /> Total <b className="text-zinc-100 tabular-nums">{total}</b></span>
         <span><SkillIcon skill="combat" size={14} /> Combat <b className="text-zinc-100 tabular-nums">{combatLevel(levels)}</b></span>
