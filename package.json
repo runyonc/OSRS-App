@@ -10,7 +10,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "build-guide": "tsx scripts/build-guide.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "build-items": "tsx scripts/build-items.ts"
   },
   "dependencies": {
     "react": "^18.3.1",
