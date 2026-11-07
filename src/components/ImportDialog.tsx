@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { useStore } from '../store';
 import { parseWikiSyncExport } from '../lib/wikisync';
 import { formatDate } from '../hooks/useDerived';
-import { WIKISYNC_VIEW_URL } from '../config';
+import { PLAYER, wikiSyncViewUrl } from '../config';
 
 export default function ImportDialog({ onClose }: { onClose: () => void }) {
   const setPlayer = useStore((s) => s.setPlayer);
@@ -11,6 +11,7 @@ export default function ImportDialog({ onClose }: { onClose: () => void }) {
   const importState = useStore((s) => s.importState);
   const resetAll = useStore((s) => s.resetAll);
   const [text, setText] = useState('');
+  const [name, setName] = useState(PLAYER);
   const [error, setError] = useState<string | null>(null);
   const [ok, setOk] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -58,9 +59,12 @@ export default function ImportDialog({ onClose }: { onClose: () => void }) {
           Paste or upload the JSON you export from the wiki. This app never calls sync.runescape.wiki itself (the wiki asks third parties not to).
           {player ? ` Last import: ${formatDate(player.importedAt)}.` : ''}
         </p>
+        <label className="mt-2 block text-xs text-zinc-400">RuneScape name
+          <input id="wikisync-name" className="input mt-0.5" value={name} onChange={(e) => setName(e.target.value)} placeholder={PLAYER} aria-label="RuneScape name" />
+        </label>
         <ol className="mt-2 list-decimal space-y-0.5 pl-5 text-xs text-zinc-300">
           <li>
-            <a className="text-amber-400 hover:underline" href={WIKISYNC_VIEW_URL} target="_blank" rel="noreferrer">Open my WikiSync data ↗</a>
+            <a className="text-amber-400 hover:underline" href={wikiSyncViewUrl(name)} target="_blank" rel="noreferrer">Open WikiSync data for {name.trim() || PLAYER} ↗</a>
             <span className="text-zinc-500"> (opens the wiki in a new tab)</span>
           </li>
           <li>Select all, copy.</li>
