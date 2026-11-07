@@ -8,7 +8,7 @@ export const GUIDE_PAGE = 'Optimal_quest_guide/Ironman';
 export const GUIDE_URL = `https://oldschool.runescape.wiki/w/${GUIDE_PAGE}`;
 
 /** Contact User-Agent requested by Wise Old Man and the wiki. Browsers may drop it; harmless when they do. */
-export const USER_AGENT = 'IronFunyonPlanner/0.1 (single-user ironman planner; runrunyon93@gmail.com)';
+export const USER_AGENT = 'IronFunyonPlanner/0.1 (single-user ironman planner; https://github.com/runyonc/OSRS-App)';
 
 export const ONE_HOUR = 60 * 60 * 1000;
 export const ONE_DAY = 24 * ONE_HOUR;
