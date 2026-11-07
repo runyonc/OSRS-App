@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { useStore } from '../store';
 import { parseWikiSyncExport } from '../lib/wikisync';
 import { formatDate } from '../hooks/useDerived';
+import { WIKISYNC_VIEW_URL } from '../config';
 
 export default function ImportDialog({ onClose }: { onClose: () => void }) {
   const setPlayer = useStore((s) => s.setPlayer);
@@ -57,6 +58,14 @@ export default function ImportDialog({ onClose }: { onClose: () => void }) {
           Paste or upload the JSON you export from the wiki. This app never calls sync.runescape.wiki itself (the wiki asks third parties not to).
           {player ? ` Last import: ${formatDate(player.importedAt)}.` : ''}
         </p>
+        <ol className="mt-2 list-decimal space-y-0.5 pl-5 text-xs text-zinc-300">
+          <li>
+            <a className="text-amber-400 hover:underline" href={WIKISYNC_VIEW_URL} target="_blank" rel="noreferrer">Open my WikiSync data ↗</a>
+            <span className="text-zinc-500"> (opens the wiki in a new tab)</span>
+          </li>
+          <li>Select all, copy.</li>
+          <li>Paste below and tap Import.</li>
+        </ol>
         <textarea className="input mt-2 min-h-[8rem] font-mono text-xs" placeholder='{"quests": {...}, "achievement_diaries": {...}, "levels": {...}}' value={text} onChange={(e) => setText(e.target.value)} aria-label="WikiSync JSON" />
         <div className="mt-2 flex flex-wrap gap-1.5">
           <button className="btn-primary" disabled={!text.trim()} onClick={() => doImport(text)}>Import pasted JSON</button>

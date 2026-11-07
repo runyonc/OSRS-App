@@ -4,6 +4,8 @@ export const PLAYER_ENCODED = encodeURIComponent(PLAYER); // "Iron%20Funyon"
 
 export const WOM_PLAYER_URL = `https://api.wiseoldman.net/v2/players/${PLAYER_ENCODED.toLowerCase()}`;
 export const WIKI_API = 'https://oldschool.runescape.wiki/api.php';
+/** Where the player reads their own WikiSync data in a browser. The app only links here; it never fetches it. */
+export const WIKISYNC_VIEW_URL = `https://sync.runescape.wiki/runelite/player/${PLAYER_ENCODED}/STANDARD`;
 export const GUIDE_PAGE = 'Optimal_quest_guide/Ironman';
 export const GUIDE_URL = `https://oldschool.runescape.wiki/w/${GUIDE_PAGE}`;
 
