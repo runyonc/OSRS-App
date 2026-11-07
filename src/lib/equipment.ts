@@ -81,6 +81,9 @@ export function searchEquipment(query: string, slot?: string, limit = 8): Equipm
   return tiers.flat().slice(0, limit);
 }
 
+/** Replaced with a data: URI in the single-file build. */
+export const SPRITE_URL = `${import.meta.env.BASE_URL}equipment-sprite.png`;
+
 export function spriteStyle(name: string, size = 32): React.CSSProperties | undefined {
   const i = SPRITE.index[name] ?? SPRITE.index[findEquipment(name)?.n ?? ''];
   if (i === undefined) return undefined;
@@ -90,7 +93,7 @@ export function spriteStyle(name: string, size = 32): React.CSSProperties | unde
   return {
     width: size,
     height: size,
-    backgroundImage: `url(${import.meta.env.BASE_URL}equipment-sprite.png)`,
+    backgroundImage: `url(${SPRITE_URL})`,
     backgroundPosition: `-${x * scale}px -${y * scale}px`,
     backgroundSize: `${SPRITE.cols * SPRITE.cell * scale}px auto`,
     backgroundRepeat: 'no-repeat',

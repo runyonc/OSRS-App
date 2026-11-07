@@ -11,7 +11,8 @@
     "test:watch": "vitest",
     "build-guide": "tsx scripts/build-guide.ts",
     "typecheck": "tsc --noEmit",
-    "build-equipment": "tsx scripts/build-equipment.ts && python3 -I scripts/build-sprite.py"
+    "build-equipment": "tsx scripts/build-equipment.ts && python3 -I scripts/build-sprite.py",
+    "build:single": "ARTIFACT=1 vite build && node scripts/build-single.mjs dist-artifact/single.html"
   },
   "dependencies": {
     "react": "^18.3.1",
