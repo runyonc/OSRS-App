@@ -36,8 +36,9 @@ export async function refreshAll(opts: { force?: boolean } = {}): Promise<Refres
     }
   }
 
+  // The guide changes rarely; re-check it only when the 7-day cache has expired, even on a manual refresh.
   const guideStale = Date.now() - s.guide.fetchedAt > GUIDE_CACHE_MS;
-  if (guideStale || opts.force) {
+  if (guideStale) {
     try {
       const { steps, unparsed, totalRows } = await fetchGuideSteps();
       if (steps.length > 100 && unparsed / Math.max(totalRows, 1) < 0.02) {
