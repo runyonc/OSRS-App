@@ -7,6 +7,7 @@ import { skillLabel, xpForLevel, levelForXp, SKILLS } from '../lib/xp';
 import { planXp, actionsNeeded, hoursNeeded, STATS_ORDER, GEAR_SLOTS } from '../lib/xpcalc';
 import { wikiPageUrl, trainingUrl } from '../lib/wiki';
 import ItemInput from './ItemInput';
+import SkillIcon from './SkillIcon';
 
 const fmt = (n: number) => n.toLocaleString();
 
@@ -29,7 +30,7 @@ function StatsGrid() {
   return (
     <div>
       <div className="flex items-baseline justify-between">
-        <h2 className="text-sm font-semibold">Stats</h2>
+        <h2 className="flex items-center gap-1.5 font-display text-sm font-semibold"><SkillIcon skill="stats" /> Stats</h2>
         <span className="text-[11px] text-zinc-500">
           {source === 'wom' ? `Wise Old Man, ${formatAge(header.levelsAt)}` : source === 'import' ? `WikiSync import, ${formatAge(header.levelsAt)} (levels only)` : 'no data yet: import or refresh'}
         </span>
@@ -44,8 +45,8 @@ function StatsGrid() {
           const pct = xp != null && next ? Math.round(((xp - start) / (next - start)) * 100) : null;
           return (
             <a key={skill} href={trainingUrl(skill)} target="_blank" rel="noreferrer" className={`rounded-md border px-2 py-1.5 ${v ? 'border-zinc-800 bg-zinc-900' : 'border-dashed border-zinc-800 bg-transparent'}`} title={xp != null ? `${fmt(xp)} XP${next ? ` · ${fmt(next - xp)} to ${level + 1}` : ''}` : skillLabel(skill)}>
-              <div className="flex items-baseline justify-between">
-                <span className="truncate text-[11px] text-zinc-400">{skillLabel(skill)}</span>
+              <div className="flex items-center justify-between gap-1">
+                <span className="flex min-w-0 items-center gap-1 text-[11px] text-zinc-400"><SkillIcon skill={skill} size={14} /><span className="truncate">{skillLabel(skill)}</span></span>
                 <span className={`text-sm font-semibold tabular-nums ${level >= 99 ? 'text-amber-300' : ''}`}>{v ? level : '—'}</span>
               </div>
               {pct !== null ? (
@@ -59,10 +60,10 @@ function StatsGrid() {
         })}
       </div>
       <div className="mt-2 flex flex-wrap gap-x-4 text-xs text-zinc-400">
-        <span>Total <b className="text-zinc-100 tabular-nums">{total}</b></span>
-        <span>Combat <b className="text-zinc-100 tabular-nums">{combatLevel(levels)}</b></span>
+        <span><SkillIcon skill="skills" size={14} /> Total <b className="text-zinc-100 tabular-nums">{total}</b></span>
+        <span><SkillIcon skill="combat" size={14} /> Combat <b className="text-zinc-100 tabular-nums">{combatLevel(levels)}</b></span>
         {hasXp ? <span>XP <b className="text-zinc-100 tabular-nums">{fmt(totalXp)}</b></span> : null}
-        <span>QP <b className="text-zinc-100 tabular-nums">{header.qp}</b></span>
+        <span><SkillIcon skill="quest" size={14} /> QP <b className="text-zinc-100 tabular-nums">{header.qp}</b></span>
       </div>
     </div>
   );
@@ -98,7 +99,7 @@ function XpCalculator() {
 
   return (
     <div className="card">
-      <h2 className="text-sm font-semibold">XP calculator</h2>
+      <h2 className="flex items-center gap-1.5 font-display text-sm font-semibold"><SkillIcon skill={skill} /> XP calculator</h2>
       <div className="mt-2 grid grid-cols-2 gap-2 text-sm">
         <label className="text-xs text-zinc-400">Skill
           <select id="calc-skill" className="input mt-0.5" value={skill} onChange={(e) => { setSkill(e.target.value); setXpOverride(''); setTargetOverride(''); }}>
@@ -167,7 +168,7 @@ function GearSetups() {
   return (
     <div>
       <div className="flex items-center justify-between gap-2">
-        <h2 className="text-sm font-semibold">Gear I'm using <span className="text-[11px] font-normal text-zinc-500">· type a slot to search every item</span></h2>
+        <h2 className="font-display text-sm font-semibold">Gear I'm using <span className="text-[11px] font-normal text-zinc-500">· type a slot to search every item</span></h2>
         <form className="flex gap-1.5" onSubmit={(e) => { e.preventDefault(); const id = addGearSetup(name || 'Setup'); setName(''); setOpen(id); }}>
           <input id="gear-name" className="input !w-36" placeholder="Melee, Ranged, Slayer…" value={name} onChange={(e) => setName(e.target.value)} />
           <button type="submit" className="btn-primary whitespace-nowrap">+ Setup</button>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useHeaderStats, formatAge, formatDate } from '../hooks/useDerived';
 import { PLAYER } from '../config';
 import { refreshAll, type RefreshReport } from '../services/refresh';
+import SkillIcon from './SkillIcon';
 
 interface Props { onImport: () => void }
 
@@ -22,16 +23,16 @@ export default function Header({ onImport }: Props) {
   };
 
   return (
-    <header className="sticky top-0 z-20 border-b border-zinc-800 bg-zinc-950/95 px-4 pt-3 pb-2 backdrop-blur">
+    <header className="sticky top-0 z-20 border-b-2 border-zinc-700 bg-zinc-950/95 px-4 pt-3 pb-2 backdrop-blur">
       <div className="mx-auto flex max-w-xl items-center justify-between gap-3">
         <div className="min-w-0">
-          <h1 className="truncate text-base font-semibold tracking-tight">
-            <span className="text-iron">⚙</span> {PLAYER}
-            {stats.combatLevel ? <span className="ml-2 text-xs font-normal text-zinc-400">cmb {stats.combatLevel}</span> : null}
+          <h1 className="truncate font-display text-base font-bold tracking-wide text-amber-400">
+            {PLAYER}
+            {stats.combatLevel ? <span className="ml-2 font-sans text-xs font-normal tracking-normal text-zinc-400"><SkillIcon skill="combat" size={13} /> {stats.combatLevel}</span> : null}
           </h1>
           <div className="mt-0.5 flex flex-wrap gap-x-3 text-xs text-zinc-400">
-            <span><b className="text-zinc-100">{stats.totalLevel}</b> total</span>
-            <span><b className="text-zinc-100">{stats.qp}</b> QP</span>
+            <span><SkillIcon skill="skills" size={13} /> <b className="text-zinc-100">{stats.totalLevel}</b> total</span>
+            <span><SkillIcon skill="quest" size={13} /> <b className="text-zinc-100">{stats.qp}</b> QP</span>
             <span title={`Levels from ${stats.levelSource === 'wom' ? 'Wise Old Man' : stats.levelSource === 'import' ? 'WikiSync import' : 'nowhere yet'}`}>
               lvls {stats.levelSource === 'none' ? '—' : formatAge(stats.levelsAt)}
             </span>

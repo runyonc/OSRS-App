@@ -4,6 +4,7 @@ import { useStore } from '../store';
 import { wikiPageUrl, trainingUrl } from '../lib/wiki';
 import { bottleneckFlags } from '../lib/completion';
 import FlagBadges from './FlagBadge';
+import SkillIcon from './SkillIcon';
 
 export const CATEGORY_STYLE: Record<string, string> = {
   gear: 'bg-cyan-900/60 text-cyan-200',
@@ -38,7 +39,7 @@ export default function MilestoneCard({ status, compact }: { status: MilestoneSt
             <div className="mt-1.5 flex flex-wrap gap-1">
               {missing.slice(0, compact ? 2 : 6).map((r) =>
                 r.kind === 'skill' ? (
-                  <a key={r.key} href={trainingUrl(r.key.split(':')[1])} target="_blank" rel="noreferrer" className="chip bg-red-900/70 text-red-100">Needs {r.label} ↗</a>
+                  <a key={r.key} href={trainingUrl(r.key.split(':')[1])} target="_blank" rel="noreferrer" className="chip bg-red-900/70 text-red-100"><SkillIcon skill={r.key.split(':')[1]} size={13} /> Needs {r.label} ↗</a>
                 ) : (
                   <span key={r.key} className={`chip ${r.auto ? 'bg-amber-900/60 text-amber-100' : 'bg-zinc-800 text-zinc-300'}`}>{r.kind === 'combat' ? r.label : `${r.kind}: ${r.label}`}</span>
                 ),

@@ -39,8 +39,11 @@ describe('store', () => {
     expect(useStore.getState().togglePin(ids[3])).toBe(false);
   });
 
-  it('ships the bundled guide and requirements', () => {
+  it('ships the bundled guide, requirements and the initial import', () => {
     const s = useStore.getState();
+    expect(s.player?.username).toBe('Iron Funyon');
+    expect(s.player?.quests["Cook's Assistant"]).toBe(2);
+    expect(s.player?.importedAt).toBe(Date.parse('2026-11-07T02:46:22.194Z'));
     expect(s.guide.steps.length).toBeGreaterThan(300);
     expect(s.guide.steps[0].name).toBe('Learning the Ropes');
     expect(Object.keys(s.questReqs).length).toBeGreaterThan(150);

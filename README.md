@@ -92,12 +92,17 @@ first `[[link]]` as the step name, reads the `{{Optimal quest|skill=xp}}` runnin
 the guide inserts between quests, become `Train <Skill> to <level>` steps. Rows that fail to parse are logged, never
 silently dropped; the test suite asserts fewer than 2% unparsed. Current snapshot: 340 steps from 237 rows, 0 unparsed.
 
-## Fixture
+## Bundled import
 
-`fixtures/wikisync-2025-10-31.json` is a **synthetic** WikiSync export shaped to the acceptance checks (Learning the
-Ropes / Cook's Assistant / The Restless Ghost done; Imp Catcher, Prince Ali Rescue, Animal Magnetism, Fairytale II and
-Rag and Bone Man II in progress; Ardougne Easy and Varrock Easy complete). Replace it with the real 10/31 export to
-test against actual data; the tests only assume those facts plus the real skill levels from Wise Old Man.
+`src/data/initialImport.json` is the player's real WikiSync export. A fresh install starts from it, and a saved
+import older than it is replaced on load, so the app never shows stale data after an update. Replace the file with a
+newer export and merge to update everyone's baseline; the tests run against it.
+
+## Look
+
+OSRS interface browns and orange (`tailwind.config.js` remaps the neutral and accent scales), Cinzel for headings, and
+the wiki's skill and UI icons (`src/assets/icons`, CC BY-NC-SA 3.0, inlined at build time) on stats, chips, goals and
+the tab bar.
 
 `fixtures/guide.wikitext` is the real guide wikitext as fetched; `npm run build-guide -- --offline` re-parses it
 without the network.

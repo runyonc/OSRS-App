@@ -12,6 +12,7 @@ import { MILESTONES, MILESTONE_BY_ID, type MilestoneCategory } from '../data/mil
 import { milestoneStatus, combatLevel } from '../lib/milestones';
 import { useMilestoneContext, useMilestoneStatuses } from '../hooks/useMilestones';
 import MilestoneCard, { CATEGORY_STYLE } from './MilestoneCard';
+import SkillIcon from './SkillIcon';
 
 const DIARY_AREAS = ['Ardougne', 'Desert', 'Falador', 'Fremennik', 'Kandarin', 'Karamja', 'Kourend & Kebos', 'Lumbridge & Draynor', 'Morytania', 'Varrock', 'Western Provinces', 'Wilderness'];
 
@@ -59,7 +60,7 @@ function MilestoneBrowser() {
   };
   return (
     <div className="pt-2">
-      <h2 className="text-sm font-semibold">Milestones</h2>
+      <h2 className="font-display text-sm font-semibold">Milestones</h2>
       <p className="text-xs text-zinc-400">{CATEGORIES.find((c) => c.id === cat)?.blurb} Ready ones also show on Next Up.</p>
       <div className="mt-2 flex gap-1">
         {CATEGORIES.map((c) => {
@@ -258,7 +259,8 @@ function GoalCard({ goal, compact }: { goal: Goal; compact?: boolean }) {
             {goal.pinned ? <span className="chip bg-violet-900/60 text-violet-200">📌 pinned</span> : null}
             {finished ? <span className="chip bg-emerald-900/60 text-emerald-200">done</span> : null}
           </div>
-          <h3 className="mt-1 text-sm font-semibold">
+          <h3 className="mt-1 flex items-center gap-1.5 text-sm font-semibold">
+            {goal.type === 'skill' ? <SkillIcon skill={goal.target.split(':')[0]} /> : goal.type === 'quest' ? <SkillIcon skill="quest" /> : goal.type === 'diary' ? <SkillIcon skill="diary" /> : goal.type === 'combat' ? <SkillIcon skill="combat" /> : null}
             {goal.type === 'quest' ? <a className="hover:underline" href={wikiPageUrl(goal.target)} target="_blank" rel="noreferrer">{goal.label}</a> : goal.label}
           </h3>
           {status ? <div className="mt-0.5 text-xs text-zinc-400">{status}</div> : null}

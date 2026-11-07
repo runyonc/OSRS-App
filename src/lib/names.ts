@@ -23,7 +23,8 @@ function romanToNumber(r: string): string {
 /** guide name → export name, for the few that normalization alone does not catch. */
 export const QUEST_ALIASES: Record<string, string[]> = {
   'Recipe for Disaster/Another Cook\'s Quest': ['Recipe for Disaster - Another Cook\'s Quest', 'Recipe for Disaster: Another Cook\'s Quest'],
-  'Recipe for Disaster/Defeating the Culinaromancer': ['Recipe for Disaster - Defeating the Culinaromancer', 'Recipe for Disaster: The final battle', 'Recipe for Disaster'],
+  'Recipe for Disaster/Defeating the Culinaromancer': ['Recipe for Disaster - Culinaromancer', 'Recipe for Disaster - Defeating the Culinaromancer', 'Recipe for Disaster: The final battle'],
+  'Recipe for Disaster/Freeing the Goblin generals': ['Recipe for Disaster - Wartface & Bentnoze', 'Recipe for Disaster - Goblin generals'],
   'Knight Waves Training Grounds': ['Knight Waves Training Ground'],
   'The Mage Arena': ['Mage Arena I'],
   'Desert Treasure I': ['Desert Treasure'],
@@ -47,12 +48,13 @@ export function findQuestKey(name: string, map: Record<string, unknown>): string
     const n = normalizeName(key);
     if (candidates.includes(n)) return key;
   }
-  // "Recipe for Disaster/Freeing X" vs "Recipe for Disaster - Freeing X" already collapse; try a looser subquest match.
-  const tail = want.replace(/^recipe for disaster /, '');
-  if (tail !== want) {
+  // The in-game list names RFD subquests by their NPC ("Recipe for Disaster - Evil Dave"), the wiki by the
+  // page ("Recipe for Disaster/Freeing Evil Dave"). Match on the tail after the verb.
+  if (want.startsWith('recipe for disaster ')) {
+    const tail = want.replace(/^recipe for disaster /, '').replace(/^(freeing the |freeing |defeating the )/, '');
     for (const key of Object.keys(map)) {
       const n = normalizeName(key);
-      if (n.startsWith('recipe for disaster') && n.endsWith(tail)) return key;
+      if (n.startsWith('recipe for disaster ') && n.replace(/^recipe for disaster /, '').replace(/^(freeing the |freeing |defeating the )/, '') === tail) return key;
     }
   }
   return undefined;
