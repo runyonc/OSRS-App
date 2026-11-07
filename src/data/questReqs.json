@@ -1,0 +1,3510 @@
+{
+ "fetchedAt": 1794014681756,
+ "reqs": {
+  "Learning the Ropes": {
+   "skills": [],
+   "quests": []
+  },
+  "Cook's Assistant": {
+   "skills": [],
+   "quests": []
+  },
+  "Sheep Shearer": {
+   "skills": [],
+   "quests": []
+  },
+  "The Restless Ghost": {
+   "skills": [],
+   "quests": []
+  },
+  "Misthalin Mystery": {
+   "skills": [],
+   "quests": []
+  },
+  "X Marks the Spot": {
+   "skills": [],
+   "quests": []
+  },
+  "Witch's Potion": {
+   "skills": [],
+   "quests": []
+  },
+  "Client of Kourend": {
+   "skills": [],
+   "quests": [
+    "X Marks the Spot"
+   ]
+  },
+  "Pandemonium": {
+   "skills": [],
+   "quests": []
+  },
+  "Pirate's Treasure": {
+   "skills": [],
+   "quests": []
+  },
+  "Children of the Sun": {
+   "skills": [],
+   "quests": []
+  },
+  "Romeo & Juliet": {
+   "skills": [],
+   "quests": []
+  },
+  "Gertrude's Cat": {
+   "skills": [],
+   "quests": []
+  },
+  "Daddy's Home": {
+   "skills": [],
+   "quests": []
+  },
+  "Natural history quiz": {
+   "skills": [],
+   "quests": []
+  },
+  "Demon Slayer": {
+   "skills": [],
+   "quests": []
+  },
+  "Rune Mysteries": {
+   "skills": [],
+   "quests": []
+  },
+  "Enter the Abyss": {
+   "skills": [],
+   "quests": []
+  },
+  "Tree Gnome Village": {
+   "skills": [],
+   "quests": []
+  },
+  "Hazeel Cult": {
+   "skills": [],
+   "quests": []
+  },
+  "Clock Tower": {
+   "skills": [],
+   "quests": []
+  },
+  "Monk's Friend": {
+   "skills": [],
+   "quests": []
+  },
+  "Plague City": {
+   "skills": [],
+   "quests": []
+  },
+  "Biohazard": {
+   "skills": [],
+   "quests": []
+  },
+  "Temple of the Eye": {
+   "skills": [
+    {
+     "skill": "runecraft",
+     "level": 10,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Enter the Abyss",
+    "Rune Mysteries"
+   ]
+  },
+  "Fight Arena": {
+   "skills": [],
+   "quests": []
+  },
+  "Tribal Totem": {
+   "skills": [
+    {
+     "skill": "thieving",
+     "level": 21,
+     "boostable": true
+    }
+   ],
+   "quests": []
+  },
+  "Sheep Herder": {
+   "skills": [],
+   "quests": []
+  },
+  "Dwarf Cannon": {
+   "skills": [],
+   "quests": []
+  },
+  "Waterfall Quest": {
+   "skills": [],
+   "quests": []
+  },
+  "Murder Mystery": {
+   "skills": [],
+   "quests": []
+  },
+  "Merlin's Crystal": {
+   "skills": [],
+   "quests": []
+  },
+  "Doric's Quest": {
+   "skills": [],
+   "quests": []
+  },
+  "Druidic Ritual": {
+   "skills": [],
+   "quests": []
+  },
+  "Witch's House": {
+   "skills": [],
+   "quests": []
+  },
+  "Holy Grail": {
+   "skills": [
+    {
+     "skill": "attack",
+     "level": 20,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Merlin's Crystal"
+   ]
+  },
+  "Vampyre Slayer": {
+   "skills": [],
+   "quests": []
+  },
+  "The Ides of Milk": {
+   "skills": [],
+   "quests": []
+  },
+  "Mudfoot's Big Adventure": {
+   "skills": [],
+   "quests": []
+  },
+  "Below Ice Mountain": {
+   "skills": [],
+   "quests": [],
+   "questPoints": 16
+  },
+  "Black Knights' Fortress": {
+   "skills": [],
+   "quests": [],
+   "questPoints": 12
+  },
+  "A Ruff Situation": {
+   "skills": [
+    {
+     "skill": "crafting",
+     "level": 15,
+     "boostable": false
+    }
+   ],
+   "quests": []
+  },
+  "Observatory Quest": {
+   "skills": [],
+   "quests": []
+  },
+  "Priest in Peril": {
+   "skills": [],
+   "quests": []
+  },
+  "Rag and Bone Man I": {
+   "skills": [],
+   "quests": []
+  },
+  "Nature Spirit": {
+   "skills": [],
+   "quests": []
+  },
+  "Recruitment Drive": {
+   "skills": [],
+   "quests": [
+    "Black Knights' Fortress",
+    "Druidic Ritual"
+   ]
+  },
+  "Alfred Grimhand's Barcrawl": {
+   "skills": [],
+   "quests": []
+  },
+  "Scorpion Catcher": {
+   "skills": [
+    {
+     "skill": "prayer",
+     "level": 31,
+     "boostable": false
+    }
+   ],
+   "quests": []
+  },
+  "Jungle Potion": {
+   "skills": [
+    {
+     "skill": "herblore",
+     "level": 3,
+     "boostable": true
+    }
+   ],
+   "quests": []
+  },
+  "A Porcine of Interest": {
+   "skills": [],
+   "quests": []
+  },
+  "Rag and Bone Man II": {
+   "skills": [
+    {
+     "skill": "slayer",
+     "level": 40,
+     "boostable": true
+    },
+    {
+     "skill": "defence",
+     "level": 20,
+     "boostable": false
+    }
+   ],
+   "quests": []
+  },
+  "Death Plateau": {
+   "skills": [],
+   "quests": []
+  },
+  "The Queen of Thieves": {
+   "skills": [
+    {
+     "skill": "thieving",
+     "level": 20,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Client of Kourend",
+    "X Marks the Spot"
+   ]
+  },
+  "The Forsaken Tower": {
+   "skills": [],
+   "quests": [
+    "Client of Kourend",
+    "X Marks the Spot"
+   ]
+  },
+  "The Depths of Despair": {
+   "skills": [
+    {
+     "skill": "agility",
+     "level": 18,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Client of Kourend",
+    "X Marks the Spot"
+   ]
+  },
+  "Tale of the Righteous": {
+   "skills": [
+    {
+     "skill": "strength",
+     "level": 16,
+     "boostable": false
+    },
+    {
+     "skill": "mining",
+     "level": 10,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Client of Kourend",
+    "X Marks the Spot"
+   ]
+  },
+  "The Ascent of Arceuus": {
+   "skills": [
+    {
+     "skill": "hunter",
+     "level": 12,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Client of Kourend",
+    "X Marks the Spot"
+   ]
+  },
+  "The Writing's on the Wall": {
+   "skills": [
+    {
+     "skill": "agility",
+     "level": 22,
+     "boostable": false
+    },
+    {
+     "skill": "thieving",
+     "level": 20,
+     "boostable": false
+    }
+   ],
+   "quests": []
+  },
+  "The Grand Tree": {
+   "skills": [
+    {
+     "skill": "agility",
+     "level": 25,
+     "boostable": true
+    }
+   ],
+   "quests": []
+  },
+  "Mountain Daughter": {
+   "skills": [
+    {
+     "skill": "agility",
+     "level": 20,
+     "boostable": true
+    }
+   ],
+   "quests": []
+  },
+  "Shield of Arrav": {
+   "skills": [],
+   "quests": []
+  },
+  "The Dig Site": {
+   "skills": [
+    {
+     "skill": "agility",
+     "level": 10,
+     "boostable": true
+    },
+    {
+     "skill": "herblore",
+     "level": 10,
+     "boostable": true
+    },
+    {
+     "skill": "thieving",
+     "level": 25,
+     "boostable": true
+    }
+   ],
+   "quests": []
+  },
+  "The Golem": {
+   "skills": [
+    {
+     "skill": "crafting",
+     "level": 20,
+     "boostable": true
+    },
+    {
+     "skill": "thieving",
+     "level": 25,
+     "boostable": true
+    }
+   ],
+   "quests": []
+  },
+  "Ethically Acquired Antiquities": {
+   "skills": [
+    {
+     "skill": "thieving",
+     "level": 25,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Children of the Sun",
+    "Shield of Arrav"
+   ]
+  },
+  "Twilight's Promise": {
+   "skills": [],
+   "quests": [
+    "Children of the Sun"
+   ]
+  },
+  "Death on the Isle": {
+   "skills": [
+    {
+     "skill": "thieving",
+     "level": 34,
+     "boostable": false
+    },
+    {
+     "skill": "agility",
+     "level": 32,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Children of the Sun"
+   ]
+  },
+  "Recipe for Disaster/Another Cook's Quest": {
+   "skills": [
+    {
+     "skill": "cooking",
+     "level": 10,
+     "boostable": false
+    }
+   ],
+   "quests": []
+  },
+  "Goblin Diplomacy": {
+   "skills": [],
+   "quests": []
+  },
+  "The Lost Tribe": {
+   "skills": [
+    {
+     "skill": "agility",
+     "level": 13,
+     "boostable": true
+    },
+    {
+     "skill": "thieving",
+     "level": 13,
+     "boostable": true
+    },
+    {
+     "skill": "mining",
+     "level": 17,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "Goblin Diplomacy",
+    "Rune Mysteries"
+   ]
+  },
+  "Death to the Dorgeshuun": {
+   "skills": [
+    {
+     "skill": "agility",
+     "level": 23,
+     "boostable": true
+    },
+    {
+     "skill": "thieving",
+     "level": 23,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "The Lost Tribe",
+    "Goblin Diplomacy",
+    "Rune Mysteries"
+   ]
+  },
+  "Recipe for Disaster/Freeing the Goblin generals": {
+   "skills": [],
+   "quests": [
+    "Recipe for Disaster/Another Cook's Quest",
+    "Cook's Assistant",
+    "Goblin Diplomacy"
+   ]
+  },
+  "The Knight's Sword": {
+   "skills": [
+    {
+     "skill": "mining",
+     "level": 10,
+     "boostable": true
+    }
+   ],
+   "quests": []
+  },
+  "Prince Ali Rescue": {
+   "skills": [],
+   "quests": []
+  },
+  "The Feud": {
+   "skills": [
+    {
+     "skill": "thieving",
+     "level": 30,
+     "boostable": false
+    }
+   ],
+   "quests": []
+  },
+  "The Corsair Curse": {
+   "skills": [],
+   "quests": []
+  },
+  "Icthlarin's Little Helper": {
+   "skills": [],
+   "quests": []
+  },
+  "Shadow of the Storm": {
+   "skills": [
+    {
+     "skill": "crafting",
+     "level": 30,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "The Golem",
+    "Demon Slayer"
+   ]
+  },
+  "Sea Slug": {
+   "skills": [
+    {
+     "skill": "firemaking",
+     "level": 30,
+     "boostable": true
+    }
+   ],
+   "quests": []
+  },
+  "Fishing Contest": {
+   "skills": [
+    {
+     "skill": "fishing",
+     "level": 10,
+     "boostable": false
+    }
+   ],
+   "quests": []
+  },
+  "Recipe for Disaster/Freeing the Mountain Dwarf": {
+   "skills": [],
+   "quests": [
+    "Recipe for Disaster/Another Cook's Quest",
+    "Cook's Assistant",
+    "Fishing Contest"
+   ]
+  },
+  "The Ribbiting Tale of a Lily Pad Labour Dispute": {
+   "skills": [
+    {
+     "skill": "woodcutting",
+     "level": 15,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Children of the Sun"
+   ]
+  },
+  "Lost City": {
+   "skills": [
+    {
+     "skill": "crafting",
+     "level": 31,
+     "boostable": true
+    },
+    {
+     "skill": "woodcutting",
+     "level": 36,
+     "boostable": true
+    }
+   ],
+   "quests": []
+  },
+  "Fairytale I - Growing Pains": {
+   "skills": [],
+   "quests": [
+    "Lost City",
+    "Nature Spirit",
+    "Priest in Peril",
+    "The Restless Ghost"
+   ]
+  },
+  "Fairytale II - Cure a Queen": {
+   "skills": [
+    {
+     "skill": "thieving",
+     "level": 40,
+     "boostable": false
+    },
+    {
+     "skill": "farming",
+     "level": 49,
+     "boostable": true
+    },
+    {
+     "skill": "herblore",
+     "level": 57,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "Fairytale I - Growing Pains",
+    "Lost City",
+    "Nature Spirit",
+    "The Restless Ghost",
+    "Priest in Peril"
+   ]
+  },
+  "Ratcatchers": {
+   "skills": [],
+   "quests": [
+    "Icthlarin's Little Helper",
+    "Gertrude's Cat",
+    "The Giant Dwarf"
+   ]
+  },
+  "Recipe for Disaster/Freeing Evil Dave": {
+   "skills": [],
+   "quests": [
+    "Gertrude's Cat",
+    "Recipe for Disaster/Another Cook's Quest",
+    "Cook's Assistant",
+    "Shadow of the Storm",
+    "Demon Slayer",
+    "The Golem"
+   ]
+  },
+  "Ghosts Ahoy": {
+   "skills": [
+    {
+     "skill": "agility",
+     "level": 25,
+     "boostable": true
+    },
+    {
+     "skill": "cooking",
+     "level": 20,
+     "boostable": true
+    }
+   ],
+   "quests": []
+  },
+  "Creature of Fenkenstrain": {
+   "skills": [
+    {
+     "skill": "crafting",
+     "level": 20,
+     "boostable": true
+    },
+    {
+     "skill": "thieving",
+     "level": 25,
+     "boostable": true
+    }
+   ],
+   "quests": []
+  },
+  "Shades of Mort'ton": {
+   "skills": [
+    {
+     "skill": "crafting",
+     "level": 20,
+     "boostable": true
+    },
+    {
+     "skill": "herblore",
+     "level": 15,
+     "boostable": true
+    },
+    {
+     "skill": "firemaking",
+     "level": 5,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "Priest in Peril"
+   ]
+  },
+  "Making History": {
+   "skills": [],
+   "quests": [
+    "Priest in Peril",
+    "The Restless Ghost"
+   ]
+  },
+  "Temple of Ikov": {
+   "skills": [
+    {
+     "skill": "thieving",
+     "level": 42,
+     "boostable": true
+    },
+    {
+     "skill": "ranged",
+     "level": 40,
+     "boostable": false
+    }
+   ],
+   "quests": []
+  },
+  "Bone Voyage": {
+   "skills": [],
+   "quests": [
+    "The Dig Site"
+   ]
+  },
+  "The Tourist Trap": {
+   "skills": [
+    {
+     "skill": "fletching",
+     "level": 10,
+     "boostable": true
+    },
+    {
+     "skill": "smithing",
+     "level": 20,
+     "boostable": true
+    }
+   ],
+   "quests": []
+  },
+  "Wanted!": {
+   "skills": [],
+   "quests": [
+    "Recruitment Drive",
+    "Black Knights' Fortress",
+    "Druidic Ritual",
+    "The Lost Tribe",
+    "Rune Mysteries",
+    "Goblin Diplomacy",
+    "Priest in Peril",
+    "Enter the Abyss"
+   ],
+   "questPoints": 32
+  },
+  "Ernest the Chicken": {
+   "skills": [],
+   "quests": []
+  },
+  "Animal Magnetism": {
+   "skills": [
+    {
+     "skill": "slayer",
+     "level": 18,
+     "boostable": false
+    },
+    {
+     "skill": "crafting",
+     "level": 19,
+     "boostable": false
+    },
+    {
+     "skill": "ranged",
+     "level": 30,
+     "boostable": false
+    },
+    {
+     "skill": "woodcutting",
+     "level": 35,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "The Restless Ghost",
+    "Ernest the Chicken",
+    "Priest in Peril"
+   ]
+  },
+  "Forgettable Tale...": {
+   "skills": [
+    {
+     "skill": "cooking",
+     "level": 22,
+     "boostable": true
+    },
+    {
+     "skill": "farming",
+     "level": 17,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "The Giant Dwarf",
+    "Fishing Contest"
+   ]
+  },
+  "Big Chompy Bird Hunting": {
+   "skills": [
+    {
+     "skill": "fletching",
+     "level": 5,
+     "boostable": true
+    },
+    {
+     "skill": "cooking",
+     "level": 30,
+     "boostable": true
+    },
+    {
+     "skill": "ranged",
+     "level": 30,
+     "boostable": false
+    }
+   ],
+   "quests": []
+  },
+  "Zogre Flesh Eaters": {
+   "skills": [
+    {
+     "skill": "smithing",
+     "level": 4,
+     "boostable": true
+    },
+    {
+     "skill": "herblore",
+     "level": 8,
+     "boostable": true
+    },
+    {
+     "skill": "ranged",
+     "level": 30,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Big Chompy Bird Hunting",
+    "Jungle Potion",
+    "Druidic Ritual"
+   ]
+  },
+  "Imp Catcher": {
+   "skills": [],
+   "quests": []
+  },
+  "Watchtower": {
+   "skills": [
+    {
+     "skill": "magic",
+     "level": 14,
+     "boostable": true
+    },
+    {
+     "skill": "thieving",
+     "level": 15,
+     "boostable": true
+    },
+    {
+     "skill": "agility",
+     "level": 25,
+     "boostable": true
+    },
+    {
+     "skill": "herblore",
+     "level": 14,
+     "boostable": true
+    },
+    {
+     "skill": "mining",
+     "level": 40,
+     "boostable": true
+    }
+   ],
+   "quests": []
+  },
+  "The Giant Dwarf": {
+   "skills": [
+    {
+     "skill": "crafting",
+     "level": 12,
+     "boostable": true
+    },
+    {
+     "skill": "firemaking",
+     "level": 16,
+     "boostable": true
+    },
+    {
+     "skill": "magic",
+     "level": 33,
+     "boostable": true
+    },
+    {
+     "skill": "thieving",
+     "level": 14,
+     "boostable": true
+    }
+   ],
+   "quests": []
+  },
+  "Another Slice of H.A.M.": {
+   "skills": [
+    {
+     "skill": "attack",
+     "level": 15,
+     "boostable": false
+    },
+    {
+     "skill": "prayer",
+     "level": 25,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Death to the Dorgeshuun",
+    "The Lost Tribe",
+    "Goblin Diplomacy",
+    "Rune Mysteries",
+    "The Giant Dwarf",
+    "The Dig Site"
+   ]
+  },
+  "Spirits of the Elid": {
+   "skills": [
+    {
+     "skill": "magic",
+     "level": 33,
+     "boostable": true
+    },
+    {
+     "skill": "ranged",
+     "level": 37,
+     "boostable": true
+    },
+    {
+     "skill": "mining",
+     "level": 37,
+     "boostable": true
+    },
+    {
+     "skill": "thieving",
+     "level": 37,
+     "boostable": true
+    }
+   ],
+   "quests": []
+  },
+  "Dragon Slayer I": {
+   "skills": [],
+   "quests": [],
+   "questPoints": 32
+  },
+  "Horror from the Deep": {
+   "skills": [
+    {
+     "skill": "agility",
+     "level": 35,
+     "boostable": true
+    }
+   ],
+   "quests": []
+  },
+  "The Garden of Death": {
+   "skills": [
+    {
+     "skill": "farming",
+     "level": 20,
+     "boostable": false
+    }
+   ],
+   "quests": []
+  },
+  "Enlightened Journey": {
+   "skills": [
+    {
+     "skill": "firemaking",
+     "level": 20,
+     "boostable": true
+    },
+    {
+     "skill": "farming",
+     "level": 30,
+     "boostable": true
+    },
+    {
+     "skill": "crafting",
+     "level": 36,
+     "boostable": true
+    }
+   ],
+   "quests": [],
+   "questPoints": 20
+  },
+  "Garden of Tranquillity": {
+   "skills": [
+    {
+     "skill": "farming",
+     "level": 25,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Creature of Fenkenstrain",
+    "Priest in Peril",
+    "The Restless Ghost"
+   ]
+  },
+  "In Search of the Myreque": {
+   "skills": [
+    {
+     "skill": "agility",
+     "level": 25,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "Nature Spirit",
+    "Priest in Peril",
+    "The Restless Ghost"
+   ]
+  },
+  "In Aid of the Myreque": {
+   "skills": [
+    {
+     "skill": "agility",
+     "level": 25,
+     "boostable": true
+    },
+    {
+     "skill": "crafting",
+     "level": 25,
+     "boostable": false
+    },
+    {
+     "skill": "mining",
+     "level": 15,
+     "boostable": false
+    },
+    {
+     "skill": "magic",
+     "level": 7,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "In Search of the Myreque",
+    "Nature Spirit",
+    "Priest in Peril",
+    "The Restless Ghost"
+   ]
+  },
+  "Darkness of Hallowvale": {
+   "skills": [
+    {
+     "skill": "construction",
+     "level": 5,
+     "boostable": true
+    },
+    {
+     "skill": "mining",
+     "level": 20,
+     "boostable": false
+    },
+    {
+     "skill": "thieving",
+     "level": 22,
+     "boostable": false
+    },
+    {
+     "skill": "agility",
+     "level": 26,
+     "boostable": true
+    },
+    {
+     "skill": "crafting",
+     "level": 32,
+     "boostable": false
+    },
+    {
+     "skill": "magic",
+     "level": 33,
+     "boostable": true
+    },
+    {
+     "skill": "strength",
+     "level": 40,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "In Aid of the Myreque",
+    "In Search of the Myreque",
+    "Nature Spirit",
+    "Priest in Peril",
+    "The Restless Ghost"
+   ]
+  },
+  "A Tail of Two Cats": {
+   "skills": [],
+   "quests": [
+    "Icthlarin's Little Helper",
+    "Gertrude's Cat"
+   ]
+  },
+  "Tower of Life": {
+   "skills": [
+    {
+     "skill": "construction",
+     "level": 10,
+     "boostable": false
+    }
+   ],
+   "quests": []
+  },
+  "Tai Bwo Wannai Trio": {
+   "skills": [
+    {
+     "skill": "agility",
+     "level": 15,
+     "boostable": true
+    },
+    {
+     "skill": "cooking",
+     "level": 30,
+     "boostable": false
+    },
+    {
+     "skill": "fishing",
+     "level": 5,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "Jungle Potion",
+    "Druidic Ritual"
+   ]
+  },
+  "Troll Stronghold": {
+   "skills": [
+    {
+     "skill": "agility",
+     "level": 15,
+     "boostable": true
+    }
+   ],
+   "quests": []
+  },
+  "Eadgar's Ruse": {
+   "skills": [
+    {
+     "skill": "herblore",
+     "level": 31,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "Druidic Ritual",
+    "Troll Stronghold",
+    "Death Plateau"
+   ]
+  },
+  "My Arm's Big Adventure": {
+   "skills": [
+    {
+     "skill": "farming",
+     "level": 29,
+     "boostable": true
+    },
+    {
+     "skill": "woodcutting",
+     "level": 10,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Eadgar's Ruse",
+    "Druidic Ritual",
+    "Troll Stronghold",
+    "Death Plateau",
+    "The Feud",
+    "Jungle Potion"
+   ]
+  },
+  "The Fremennik Trials": {
+   "skills": [],
+   "quests": []
+  },
+  "Shilo Village": {
+   "skills": [
+    {
+     "skill": "crafting",
+     "level": 20,
+     "boostable": true
+    },
+    {
+     "skill": "agility",
+     "level": 32,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "Jungle Potion",
+    "Druidic Ritual"
+   ]
+  },
+  "Troll Romance": {
+   "skills": [
+    {
+     "skill": "agility",
+     "level": 28,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "Troll Stronghold",
+    "Death Plateau"
+   ]
+  },
+  "The Eyes of Glouphrie": {
+   "skills": [
+    {
+     "skill": "construction",
+     "level": 5,
+     "boostable": false
+    },
+    {
+     "skill": "magic",
+     "level": 46,
+     "boostable": false
+    }
+   ],
+   "quests": []
+  },
+  "Elemental Workshop I": {
+   "skills": [
+    {
+     "skill": "mining",
+     "level": 20,
+     "boostable": true
+    },
+    {
+     "skill": "smithing",
+     "level": 20,
+     "boostable": true
+    },
+    {
+     "skill": "crafting",
+     "level": 20,
+     "boostable": true
+    }
+   ],
+   "quests": []
+  },
+  "Elemental Workshop II": {
+   "skills": [
+    {
+     "skill": "magic",
+     "level": 20,
+     "boostable": true
+    },
+    {
+     "skill": "smithing",
+     "level": 30,
+     "boostable": true
+    }
+   ],
+   "quests": []
+  },
+  "Prying Times": {
+   "skills": [
+    {
+     "skill": "smithing",
+     "level": 30,
+     "boostable": false
+    },
+    {
+     "skill": "sailing",
+     "level": 12,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Pandemonium",
+    "The Knight's Sword"
+   ]
+  },
+  "Sleeping Giants": {
+   "skills": [
+    {
+     "skill": "smithing",
+     "level": 15,
+     "boostable": false
+    }
+   ],
+   "quests": []
+  },
+  "Recipe for Disaster/Freeing Pirate Pete": {
+   "skills": [
+    {
+     "skill": "cooking",
+     "level": 31,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "Recipe for Disaster/Another Cook's Quest",
+    "Cook's Assistant"
+   ]
+  },
+  "The Fremennik Isles": {
+   "skills": [
+    {
+     "skill": "construction",
+     "level": 20,
+     "boostable": true
+    }
+   ],
+   "quests": []
+  },
+  "Getting Ahead": {
+   "skills": [
+    {
+     "skill": "crafting",
+     "level": 30,
+     "boostable": false
+    },
+    {
+     "skill": "construction",
+     "level": 26,
+     "boostable": false
+    }
+   ],
+   "quests": []
+  },
+  "Meat and Greet": {
+   "skills": [],
+   "quests": [
+    "Children of the Sun"
+   ]
+  },
+  "Recipe for Disaster/Freeing the Lumbridge Guide": {
+   "skills": [
+    {
+     "skill": "cooking",
+     "level": 40,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "Big Chompy Bird Hunting",
+    "Biohazard",
+    "Plague City",
+    "Demon Slayer",
+    "Murder Mystery",
+    "Nature Spirit",
+    "Priest in Peril",
+    "The Restless Ghost",
+    "Recipe for Disaster/Another Cook's Quest",
+    "Cook's Assistant",
+    "Witch's House"
+   ]
+  },
+  "Recipe for Disaster/Freeing Skrach Uglogwee": {
+   "skills": [
+    {
+     "skill": "cooking",
+     "level": 41,
+     "boostable": true
+    },
+    {
+     "skill": "firemaking",
+     "level": 20,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "Big Chompy Bird Hunting",
+    "Recipe for Disaster/Another Cook's Quest",
+    "Cook's Assistant"
+   ]
+  },
+  "Haunted Mine": {
+   "skills": [
+    {
+     "skill": "crafting",
+     "level": 35,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "Priest in Peril"
+   ]
+  },
+  "Contact!": {
+   "skills": [],
+   "quests": [
+    "Prince Ali Rescue",
+    "Icthlarin's Little Helper",
+    "Gertrude's Cat"
+   ]
+  },
+  "Monkey Madness I": {
+   "skills": [],
+   "quests": [
+    "The Grand Tree",
+    "Tree Gnome Village"
+   ]
+  },
+  "Olaf's Quest": {
+   "skills": [
+    {
+     "skill": "firemaking",
+     "level": 40,
+     "boostable": true
+    },
+    {
+     "skill": "woodcutting",
+     "level": 50,
+     "boostable": true
+    }
+   ],
+   "quests": []
+  },
+  "Tears of Guthix": {
+   "skills": [
+    {
+     "skill": "firemaking",
+     "level": 49,
+     "boostable": true
+    },
+    {
+     "skill": "crafting",
+     "level": 20,
+     "boostable": true
+    },
+    {
+     "skill": "mining",
+     "level": 20,
+     "boostable": true
+    }
+   ],
+   "quests": [],
+   "questPoints": 43
+  },
+  "One Small Favour": {
+   "skills": [
+    {
+     "skill": "agility",
+     "level": 36,
+     "boostable": true
+    },
+    {
+     "skill": "crafting",
+     "level": 25,
+     "boostable": true
+    },
+    {
+     "skill": "herblore",
+     "level": 18,
+     "boostable": true
+    },
+    {
+     "skill": "smithing",
+     "level": 30,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "Rune Mysteries",
+    "Shilo Village",
+    "Jungle Potion",
+    "Druidic Ritual"
+   ]
+  },
+  "The Slug Menace": {
+   "skills": [
+    {
+     "skill": "crafting",
+     "level": 30,
+     "boostable": false
+    },
+    {
+     "skill": "runecraft",
+     "level": 30,
+     "boostable": false
+    },
+    {
+     "skill": "slayer",
+     "level": 30,
+     "boostable": false
+    },
+    {
+     "skill": "thieving",
+     "level": 30,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Wanted!",
+    "Recruitment Drive",
+    "Black Knights' Fortress",
+    "Druidic Ritual",
+    "The Lost Tribe",
+    "Rune Mysteries",
+    "Goblin Diplomacy",
+    "Enter the Abyss",
+    "Priest in Peril",
+    "Sea Slug"
+   ]
+  },
+  "Between a Rock...": {
+   "skills": [
+    {
+     "skill": "defence",
+     "level": 30,
+     "boostable": true
+    },
+    {
+     "skill": "mining",
+     "level": 40,
+     "boostable": true
+    },
+    {
+     "skill": "smithing",
+     "level": 50,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "Dwarf Cannon",
+    "Fishing Contest"
+   ]
+  },
+  "Cold War": {
+   "skills": [
+    {
+     "skill": "hunter",
+     "level": 10,
+     "boostable": false
+    },
+    {
+     "skill": "agility",
+     "level": 30,
+     "boostable": false
+    },
+    {
+     "skill": "crafting",
+     "level": 30,
+     "boostable": false
+    },
+    {
+     "skill": "construction",
+     "level": 34,
+     "boostable": false
+    },
+    {
+     "skill": "thieving",
+     "level": 15,
+     "boostable": false
+    }
+   ],
+   "quests": []
+  },
+  "Underground Pass": {
+   "skills": [
+    {
+     "skill": "ranged",
+     "level": 25,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "Biohazard",
+    "Plague City"
+   ]
+  },
+  "Skippy and the Mogres": {
+   "skills": [
+    {
+     "skill": "cooking",
+     "level": 20,
+     "boostable": true
+    }
+   ],
+   "quests": []
+  },
+  "Lair of Tarn Razorlor": {
+   "skills": [
+    {
+     "skill": "slayer",
+     "level": 40,
+     "boostable": false
+    }
+   ],
+   "quests": []
+  },
+  "Current Affairs": {
+   "skills": [
+    {
+     "skill": "sailing",
+     "level": 22,
+     "boostable": false
+    },
+    {
+     "skill": "fishing",
+     "level": 10,
+     "boostable": false
+    }
+   ],
+   "quests": []
+  },
+  "Crab Quest": {
+   "skills": [
+    {
+     "skill": "sailing",
+     "level": 40,
+     "boostable": false
+    },
+    {
+     "skill": "fishing",
+     "level": 30,
+     "boostable": false
+    }
+   ],
+   "quests": []
+  },
+  "Rum Deal": {
+   "skills": [
+    {
+     "skill": "crafting",
+     "level": 42,
+     "boostable": true
+    },
+    {
+     "skill": "farming",
+     "level": 40,
+     "boostable": true
+    },
+    {
+     "skill": "prayer",
+     "level": 47,
+     "boostable": true
+    },
+    {
+     "skill": "slayer",
+     "level": 42,
+     "boostable": false
+    },
+    {
+     "skill": "fishing",
+     "level": 50,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "Zogre Flesh Eaters",
+    "Big Chompy Bird Hunting",
+    "Jungle Potion",
+    "Druidic Ritual",
+    "Priest in Peril"
+   ]
+  },
+  "Cabin Fever": {
+   "skills": [
+    {
+     "skill": "agility",
+     "level": 42,
+     "boostable": false
+    },
+    {
+     "skill": "crafting",
+     "level": 45,
+     "boostable": false
+    },
+    {
+     "skill": "smithing",
+     "level": 50,
+     "boostable": false
+    },
+    {
+     "skill": "ranged",
+     "level": 40,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Pirate's Treasure",
+    "Rum Deal",
+    "Zogre Flesh Eaters",
+    "Big Chompy Bird Hunting",
+    "Jungle Potion",
+    "Druidic Ritual",
+    "Priest in Peril"
+   ]
+  },
+  "His Faithful Servants": {
+   "skills": [],
+   "quests": [
+    "Priest in Peril"
+   ]
+  },
+  "The Great Brain Robbery": {
+   "skills": [
+    {
+     "skill": "crafting",
+     "level": 16,
+     "boostable": false
+    },
+    {
+     "skill": "construction",
+     "level": 30,
+     "boostable": false
+    },
+    {
+     "skill": "prayer",
+     "level": 50,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Creature of Fenkenstrain",
+    "Cabin Fever",
+    "Pirate's Treasure",
+    "Rum Deal",
+    "Priest in Peril",
+    "Zogre Flesh Eaters",
+    "Big Chompy Bird Hunting",
+    "Jungle Potion",
+    "Druidic Ritual",
+    "Recipe for Disaster/Freeing Pirate Pete",
+    "Recipe for Disaster/Another Cook's Quest",
+    "Cook's Assistant"
+   ]
+  },
+  "Scrambled!": {
+   "skills": [
+    {
+     "skill": "construction",
+     "level": 38,
+     "boostable": false
+    },
+    {
+     "skill": "cooking",
+     "level": 36,
+     "boostable": false
+    },
+    {
+     "skill": "smithing",
+     "level": 35,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Children of the Sun"
+   ]
+  },
+  "The Hand in the Sand": {
+   "skills": [
+    {
+     "skill": "thieving",
+     "level": 17,
+     "boostable": false
+    },
+    {
+     "skill": "crafting",
+     "level": 49,
+     "boostable": false
+    }
+   ],
+   "quests": []
+  },
+  "Enakhra's Lament": {
+   "skills": [
+    {
+     "skill": "crafting",
+     "level": 50,
+     "boostable": false
+    },
+    {
+     "skill": "firemaking",
+     "level": 45,
+     "boostable": true
+    },
+    {
+     "skill": "prayer",
+     "level": 43,
+     "boostable": false
+    },
+    {
+     "skill": "magic",
+     "level": 39,
+     "boostable": true
+    }
+   ],
+   "quests": []
+  },
+  "Heroes' Quest": {
+   "skills": [
+    {
+     "skill": "cooking",
+     "level": 53,
+     "boostable": true
+    },
+    {
+     "skill": "fishing",
+     "level": 53,
+     "boostable": true
+    },
+    {
+     "skill": "herblore",
+     "level": 25,
+     "boostable": true
+    },
+    {
+     "skill": "mining",
+     "level": 50,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "Shield of Arrav",
+    "Lost City",
+    "Merlin's Crystal",
+    "Dragon Slayer I"
+   ],
+   "questPoints": 55
+  },
+  "Throne of Miscellania": {
+   "skills": [],
+   "quests": [
+    "Heroes' Quest",
+    "Shield of Arrav",
+    "Lost City",
+    "Merlin's Crystal",
+    "Dragon Slayer I",
+    "The Fremennik Trials"
+   ]
+  },
+  "Royal Trouble": {
+   "skills": [
+    {
+     "skill": "agility",
+     "level": 40,
+     "boostable": true
+    },
+    {
+     "skill": "slayer",
+     "level": 40,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "Throne of Miscellania",
+    "Heroes' Quest",
+    "Shield of Arrav",
+    "Lost City",
+    "Merlin's Crystal",
+    "Dragon Slayer I",
+    "The Fremennik Trials"
+   ]
+  },
+  "Desert Treasure I": {
+   "skills": [
+    {
+     "skill": "thieving",
+     "level": 53,
+     "boostable": false
+    },
+    {
+     "skill": "magic",
+     "level": 50,
+     "boostable": false
+    },
+    {
+     "skill": "firemaking",
+     "level": 50,
+     "boostable": true
+    },
+    {
+     "skill": "slayer",
+     "level": 10,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "The Dig Site",
+    "Temple of Ikov",
+    "The Tourist Trap",
+    "Troll Stronghold",
+    "Death Plateau",
+    "Priest in Peril",
+    "Waterfall Quest"
+   ]
+  },
+  "A Taste of Hope": {
+   "skills": [
+    {
+     "skill": "crafting",
+     "level": 48,
+     "boostable": false
+    },
+    {
+     "skill": "agility",
+     "level": 45,
+     "boostable": false
+    },
+    {
+     "skill": "attack",
+     "level": 40,
+     "boostable": false
+    },
+    {
+     "skill": "herblore",
+     "level": 40,
+     "boostable": false
+    },
+    {
+     "skill": "slayer",
+     "level": 38,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Darkness of Hallowvale",
+    "In Aid of the Myreque",
+    "In Search of the Myreque",
+    "Nature Spirit",
+    "Priest in Peril",
+    "The Restless Ghost"
+   ]
+  },
+  "Family Crest": {
+   "skills": [
+    {
+     "skill": "mining",
+     "level": 40,
+     "boostable": true
+    },
+    {
+     "skill": "smithing",
+     "level": 40,
+     "boostable": true
+    },
+    {
+     "skill": "magic",
+     "level": 59,
+     "boostable": true
+    },
+    {
+     "skill": "crafting",
+     "level": 40,
+     "boostable": true
+    }
+   ],
+   "quests": []
+  },
+  "Legends' Quest": {
+   "skills": [
+    {
+     "skill": "agility",
+     "level": 50,
+     "boostable": true
+    },
+    {
+     "skill": "crafting",
+     "level": 50,
+     "boostable": true
+    },
+    {
+     "skill": "herblore",
+     "level": 45,
+     "boostable": true
+    },
+    {
+     "skill": "magic",
+     "level": 56,
+     "boostable": true
+    },
+    {
+     "skill": "mining",
+     "level": 52,
+     "boostable": true
+    },
+    {
+     "skill": "prayer",
+     "level": 42,
+     "boostable": true
+    },
+    {
+     "skill": "smithing",
+     "level": 50,
+     "boostable": true
+    },
+    {
+     "skill": "strength",
+     "level": 50,
+     "boostable": true
+    },
+    {
+     "skill": "thieving",
+     "level": 50,
+     "boostable": true
+    },
+    {
+     "skill": "woodcutting",
+     "level": 50,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "Family Crest",
+    "Heroes' Quest",
+    "Shield of Arrav",
+    "Lost City",
+    "Merlin's Crystal",
+    "Dragon Slayer I",
+    "Shilo Village",
+    "Jungle Potion",
+    "Druidic Ritual",
+    "Underground Pass",
+    "Biohazard",
+    "Plague City",
+    "Waterfall Quest"
+   ],
+   "questPoints": 107
+  },
+  "Recipe for Disaster/Freeing Sir Amik Varze": {
+   "skills": [],
+   "quests": [
+    "Family Crest",
+    "Heroes' Quest",
+    "Shield of Arrav",
+    "Lost City",
+    "Merlin's Crystal",
+    "Dragon Slayer I",
+    "Recipe for Disaster/Another Cook's Quest",
+    "Cook's Assistant",
+    "Shilo Village",
+    "Jungle Potion",
+    "Druidic Ritual",
+    "Underground Pass",
+    "Biohazard",
+    "Plague City",
+    "Waterfall Quest"
+   ],
+   "questPoints": 107
+  },
+  "Curse of the Empty Lord": {
+   "skills": [
+    {
+     "skill": "thieving",
+     "level": 53,
+     "boostable": false
+    },
+    {
+     "skill": "prayer",
+     "level": 31,
+     "boostable": false
+    }
+   ],
+   "quests": []
+  },
+  "The General's Shadow": {
+   "skills": [],
+   "quests": [
+    "Curse of the Empty Lord",
+    "Fight Arena"
+   ]
+  },
+  "A Soul's Bane": {
+   "skills": [],
+   "quests": []
+  },
+  "Land of the Goblins": {
+   "skills": [
+    {
+     "skill": "agility",
+     "level": 38,
+     "boostable": false
+    },
+    {
+     "skill": "fishing",
+     "level": 40,
+     "boostable": false
+    },
+    {
+     "skill": "thieving",
+     "level": 45,
+     "boostable": false
+    },
+    {
+     "skill": "herblore",
+     "level": 48,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Another Slice of H.A.M.",
+    "Death to the Dorgeshuun",
+    "The Lost Tribe",
+    "Goblin Diplomacy",
+    "Rune Mysteries",
+    "The Giant Dwarf",
+    "The Dig Site",
+    "Fishing Contest"
+   ]
+  },
+  "A Kingdom Divided": {
+   "skills": [
+    {
+     "skill": "agility",
+     "level": 54,
+     "boostable": false
+    },
+    {
+     "skill": "thieving",
+     "level": 52,
+     "boostable": false
+    },
+    {
+     "skill": "woodcutting",
+     "level": 52,
+     "boostable": false
+    },
+    {
+     "skill": "herblore",
+     "level": 50,
+     "boostable": false
+    },
+    {
+     "skill": "mining",
+     "level": 42,
+     "boostable": false
+    },
+    {
+     "skill": "crafting",
+     "level": 38,
+     "boostable": false
+    },
+    {
+     "skill": "magic",
+     "level": 35,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "The Depths of Despair",
+    "The Queen of Thieves",
+    "The Ascent of Arceuus",
+    "The Forsaken Tower",
+    "Tale of the Righteous",
+    "Client of Kourend",
+    "X Marks the Spot"
+   ]
+  },
+  "The Heart of Darkness": {
+   "skills": [
+    {
+     "skill": "mining",
+     "level": 55,
+     "boostable": false
+    },
+    {
+     "skill": "thieving",
+     "level": 48,
+     "boostable": false
+    },
+    {
+     "skill": "slayer",
+     "level": 48,
+     "boostable": false
+    },
+    {
+     "skill": "agility",
+     "level": 46,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Twilight's Promise",
+    "Children of the Sun"
+   ]
+  },
+  "Perilous Moons": {
+   "skills": [
+    {
+     "skill": "slayer",
+     "level": 48,
+     "boostable": false
+    },
+    {
+     "skill": "hunter",
+     "level": 20,
+     "boostable": false
+    },
+    {
+     "skill": "fishing",
+     "level": 20,
+     "boostable": false
+    },
+    {
+     "skill": "runecraft",
+     "level": 20,
+     "boostable": false
+    },
+    {
+     "skill": "construction",
+     "level": 10,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Twilight's Promise",
+    "Children of the Sun"
+   ]
+  },
+  "Recipe for Disaster/Freeing King Awowogei": {
+   "skills": [
+    {
+     "skill": "cooking",
+     "level": 70,
+     "boostable": true
+    },
+    {
+     "skill": "agility",
+     "level": 48,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Monkey Madness I",
+    "The Grand Tree",
+    "Tree Gnome Village",
+    "Recipe for Disaster/Another Cook's Quest",
+    "Cook's Assistant"
+   ]
+  },
+  "Regicide": {
+   "skills": [
+    {
+     "skill": "crafting",
+     "level": 10,
+     "boostable": false
+    },
+    {
+     "skill": "agility",
+     "level": 56,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "Underground Pass",
+    "Biohazard",
+    "Plague City"
+   ]
+  },
+  "Roving Elves": {
+   "skills": [
+    {
+     "skill": "agility",
+     "level": 56,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "Regicide",
+    "Underground Pass",
+    "Biohazard",
+    "Plague City",
+    "Waterfall Quest"
+   ]
+  },
+  "Mourning's End Part I": {
+   "skills": [
+    {
+     "skill": "ranged",
+     "level": 60,
+     "boostable": false
+    },
+    {
+     "skill": "thieving",
+     "level": 50,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Roving Elves",
+    "Regicide",
+    "Underground Pass",
+    "Biohazard",
+    "Plague City",
+    "Waterfall Quest",
+    "Big Chompy Bird Hunting",
+    "Sheep Herder"
+   ]
+  },
+  "Mourning's End Part II": {
+   "skills": [],
+   "quests": [
+    "Mourning's End Part I",
+    "Roving Elves",
+    "Regicide",
+    "Underground Pass",
+    "Biohazard",
+    "Plague City",
+    "Waterfall Quest",
+    "Big Chompy Bird Hunting",
+    "Sheep Herder"
+   ]
+  },
+  "Lunar Diplomacy": {
+   "skills": [
+    {
+     "skill": "herblore",
+     "level": 5,
+     "boostable": false
+    },
+    {
+     "skill": "crafting",
+     "level": 61,
+     "boostable": false
+    },
+    {
+     "skill": "defence",
+     "level": 40,
+     "boostable": false
+    },
+    {
+     "skill": "firemaking",
+     "level": 49,
+     "boostable": false
+    },
+    {
+     "skill": "magic",
+     "level": 65,
+     "boostable": false
+    },
+    {
+     "skill": "mining",
+     "level": 60,
+     "boostable": false
+    },
+    {
+     "skill": "woodcutting",
+     "level": 55,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "The Fremennik Trials",
+    "Lost City",
+    "Rune Mysteries",
+    "Shilo Village",
+    "Jungle Potion",
+    "Druidic Ritual"
+   ]
+  },
+  "What Lies Below": {
+   "skills": [
+    {
+     "skill": "runecraft",
+     "level": 35,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Rune Mysteries"
+   ]
+  },
+  "King's Ransom": {
+   "skills": [
+    {
+     "skill": "magic",
+     "level": 45,
+     "boostable": false
+    },
+    {
+     "skill": "defence",
+     "level": 65,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Black Knights' Fortress",
+    "Holy Grail",
+    "Merlin's Crystal",
+    "Murder Mystery",
+    "One Small Favour",
+    "Rune Mysteries",
+    "Shilo Village",
+    "Jungle Potion",
+    "Druidic Ritual"
+   ]
+  },
+  "Knight Waves Training Grounds": {
+   "skills": [],
+   "quests": []
+  },
+  "Swan Song": {
+   "skills": [
+    {
+     "skill": "magic",
+     "level": 66,
+     "boostable": true
+    },
+    {
+     "skill": "cooking",
+     "level": 62,
+     "boostable": true
+    },
+    {
+     "skill": "fishing",
+     "level": 62,
+     "boostable": true
+    },
+    {
+     "skill": "smithing",
+     "level": 45,
+     "boostable": true
+    },
+    {
+     "skill": "firemaking",
+     "level": 42,
+     "boostable": true
+    },
+    {
+     "skill": "crafting",
+     "level": 40,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "One Small Favour",
+    "Rune Mysteries",
+    "Shilo Village",
+    "Jungle Potion",
+    "Druidic Ritual",
+    "Garden of Tranquillity",
+    "Creature of Fenkenstrain",
+    "Priest in Peril",
+    "The Restless Ghost"
+   ],
+   "questPoints": 100
+  },
+  "Recipe for Disaster/Defeating the Culinaromancer": {
+   "skills": [],
+   "quests": [
+    "Desert Treasure I",
+    "The Dig Site",
+    "Temple of Ikov",
+    "The Tourist Trap",
+    "Troll Stronghold",
+    "Death Plateau",
+    "Priest in Peril",
+    "Waterfall Quest",
+    "Horror from the Deep",
+    "Alfred Grimhand's Barcrawl",
+    "Recipe for Disaster/Freeing Evil Dave",
+    "Recipe for Disaster/Freeing the Goblin generals",
+    "Recipe for Disaster/Freeing the Lumbridge Guide",
+    "Recipe for Disaster/Freeing the Mountain Dwarf",
+    "Recipe for Disaster/Freeing Pirate Pete",
+    "Recipe for Disaster/Freeing Sir Amik Varze",
+    "Recipe for Disaster/Freeing Skrach Uglogwee",
+    "Recipe for Disaster/Freeing King Awowogei"
+   ],
+   "questPoints": 175
+  },
+  "Grim Tales": {
+   "skills": [
+    {
+     "skill": "farming",
+     "level": 45,
+     "boostable": true
+    },
+    {
+     "skill": "herblore",
+     "level": 52,
+     "boostable": true
+    },
+    {
+     "skill": "thieving",
+     "level": 58,
+     "boostable": true
+    },
+    {
+     "skill": "agility",
+     "level": 59,
+     "boostable": true
+    },
+    {
+     "skill": "woodcutting",
+     "level": 71,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "Witch's House"
+   ]
+  },
+  "Dream Mentor": {
+   "skills": [],
+   "quests": [
+    "Lunar Diplomacy",
+    "The Fremennik Trials",
+    "Lost City",
+    "Rune Mysteries",
+    "Shilo Village",
+    "Jungle Potion",
+    "Eadgar's Ruse",
+    "Druidic Ritual",
+    "Troll Stronghold",
+    "Death Plateau"
+   ]
+  },
+  "Eagles' Peak": {
+   "skills": [
+    {
+     "skill": "hunter",
+     "level": 27,
+     "boostable": true
+    }
+   ],
+   "quests": []
+  },
+  "At First Light": {
+   "skills": [
+    {
+     "skill": "hunter",
+     "level": 46,
+     "boostable": false
+    },
+    {
+     "skill": "herblore",
+     "level": 30,
+     "boostable": false
+    },
+    {
+     "skill": "construction",
+     "level": 27,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Children of the Sun",
+    "Eagles' Peak"
+   ]
+  },
+  "Defender of Varrock": {
+   "skills": [
+    {
+     "skill": "smithing",
+     "level": 55,
+     "boostable": false
+    },
+    {
+     "skill": "hunter",
+     "level": 52,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Shield of Arrav",
+    "Temple of Ikov",
+    "Below Ice Mountain",
+    "Family Crest",
+    "Garden of Tranquillity",
+    "Creature of Fenkenstrain",
+    "Priest in Peril",
+    "The Restless Ghost",
+    "What Lies Below",
+    "Rune Mysteries",
+    "Romeo & Juliet",
+    "Demon Slayer"
+   ]
+  },
+  "Devious Minds": {
+   "skills": [
+    {
+     "skill": "smithing",
+     "level": 65,
+     "boostable": true
+    },
+    {
+     "skill": "runecraft",
+     "level": 50,
+     "boostable": false
+    },
+    {
+     "skill": "fletching",
+     "level": 50,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "Wanted!",
+    "Recruitment Drive",
+    "Black Knights' Fortress",
+    "Druidic Ritual",
+    "The Lost Tribe",
+    "Goblin Diplomacy",
+    "Rune Mysteries",
+    "Priest in Peril",
+    "Enter the Abyss",
+    "Troll Stronghold",
+    "Death Plateau",
+    "Doric's Quest"
+   ]
+  },
+  "The Final Dawn": {
+   "skills": [
+    {
+     "skill": "thieving",
+     "level": 66,
+     "boostable": false
+    },
+    {
+     "skill": "runecraft",
+     "level": 52,
+     "boostable": false
+    },
+    {
+     "skill": "fletching",
+     "level": 52,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "The Heart of Darkness",
+    "Twilight's Promise",
+    "Children of the Sun",
+    "Perilous Moons"
+   ]
+  },
+  "Troubled Tortugans": {
+   "skills": [
+    {
+     "skill": "slayer",
+     "level": 51,
+     "boostable": false
+    },
+    {
+     "skill": "construction",
+     "level": 48,
+     "boostable": false
+    },
+    {
+     "skill": "sailing",
+     "level": 45,
+     "boostable": false
+    },
+    {
+     "skill": "hunter",
+     "level": 45,
+     "boostable": false
+    },
+    {
+     "skill": "woodcutting",
+     "level": 40,
+     "boostable": false
+    },
+    {
+     "skill": "crafting",
+     "level": 34,
+     "boostable": false
+    }
+   ],
+   "quests": []
+  },
+  "The Red Reef": {
+   "skills": [
+    {
+     "skill": "sailing",
+     "level": 52,
+     "boostable": false
+    },
+    {
+     "skill": "smithing",
+     "level": 48,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Troubled Tortugans",
+    "Pandemonium"
+   ]
+  },
+  "Fallen From Grace": {
+   "skills": [
+    {
+     "skill": "sailing",
+     "level": 62,
+     "boostable": false
+    },
+    {
+     "skill": "crafting",
+     "level": 60,
+     "boostable": false
+    },
+    {
+     "skill": "runecraft",
+     "level": 47,
+     "boostable": false
+    },
+    {
+     "skill": "mining",
+     "level": 53,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Pandemonium"
+   ]
+  },
+  "Shadows of Custodia": {
+   "skills": [
+    {
+     "skill": "slayer",
+     "level": 54,
+     "boostable": false
+    },
+    {
+     "skill": "fishing",
+     "level": 45,
+     "boostable": false
+    },
+    {
+     "skill": "construction",
+     "level": 41,
+     "boostable": false
+    },
+    {
+     "skill": "hunter",
+     "level": 36,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Children of the Sun"
+   ]
+  },
+  "The Path of Glouphrie": {
+   "skills": [
+    {
+     "skill": "strength",
+     "level": 60,
+     "boostable": false
+    },
+    {
+     "skill": "slayer",
+     "level": 56,
+     "boostable": false
+    },
+    {
+     "skill": "thieving",
+     "level": 56,
+     "boostable": false
+    },
+    {
+     "skill": "ranged",
+     "level": 47,
+     "boostable": false
+    },
+    {
+     "skill": "agility",
+     "level": 45,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "The Eyes of Glouphrie",
+    "The Grand Tree",
+    "Waterfall Quest",
+    "Tree Gnome Village"
+   ]
+  },
+  "The Fremennik Exiles": {
+   "skills": [
+    {
+     "skill": "crafting",
+     "level": 65,
+     "boostable": false
+    },
+    {
+     "skill": "slayer",
+     "level": 60,
+     "boostable": false
+    },
+    {
+     "skill": "smithing",
+     "level": 60,
+     "boostable": false
+    },
+    {
+     "skill": "fishing",
+     "level": 60,
+     "boostable": false
+    },
+    {
+     "skill": "runecraft",
+     "level": 55,
+     "boostable": false
+    },
+    {
+     "skill": "mining",
+     "level": 60,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "The Fremennik Isles",
+    "The Fremennik Trials",
+    "Lunar Diplomacy",
+    "Lost City",
+    "Rune Mysteries",
+    "Shilo Village",
+    "Jungle Potion",
+    "Druidic Ritual",
+    "Mountain Daughter",
+    "Heroes' Quest",
+    "Dragon Slayer I",
+    "Merlin's Crystal",
+    "Shield of Arrav"
+   ]
+  },
+  "Sins of the Father": {
+   "skills": [
+    {
+     "skill": "woodcutting",
+     "level": 62,
+     "boostable": false
+    },
+    {
+     "skill": "fletching",
+     "level": 60,
+     "boostable": false
+    },
+    {
+     "skill": "crafting",
+     "level": 56,
+     "boostable": false
+    },
+    {
+     "skill": "agility",
+     "level": 52,
+     "boostable": false
+    },
+    {
+     "skill": "attack",
+     "level": 50,
+     "boostable": false
+    },
+    {
+     "skill": "slayer",
+     "level": 50,
+     "boostable": false
+    },
+    {
+     "skill": "magic",
+     "level": 49,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Vampyre Slayer",
+    "A Taste of Hope",
+    "Darkness of Hallowvale",
+    "In Aid of the Myreque",
+    "In Search of the Myreque",
+    "Nature Spirit",
+    "Priest in Peril",
+    "The Restless Ghost"
+   ]
+  },
+  "Beneath Cursed Sands": {
+   "skills": [
+    {
+     "skill": "agility",
+     "level": 62,
+     "boostable": false
+    },
+    {
+     "skill": "crafting",
+     "level": 55,
+     "boostable": false
+    },
+    {
+     "skill": "firemaking",
+     "level": 55,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Contact!",
+    "Prince Ali Rescue",
+    "Icthlarin's Little Helper",
+    "Gertrude's Cat"
+   ]
+  },
+  "The Curse of Arrav": {
+   "skills": [
+    {
+     "skill": "mining",
+     "level": 64,
+     "boostable": false
+    },
+    {
+     "skill": "ranged",
+     "level": 62,
+     "boostable": false
+    },
+    {
+     "skill": "thieving",
+     "level": 62,
+     "boostable": false
+    },
+    {
+     "skill": "agility",
+     "level": 61,
+     "boostable": false
+    },
+    {
+     "skill": "strength",
+     "level": 58,
+     "boostable": false
+    },
+    {
+     "skill": "slayer",
+     "level": 37,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Defender of Varrock",
+    "Shield of Arrav",
+    "Temple of Ikov",
+    "Below Ice Mountain",
+    "Family Crest",
+    "Garden of Tranquillity",
+    "Creature of Fenkenstrain",
+    "Priest in Peril",
+    "The Restless Ghost",
+    "What Lies Below",
+    "Rune Mysteries",
+    "Romeo & Juliet",
+    "Demon Slayer",
+    "Troll Romance",
+    "Troll Stronghold",
+    "Death Plateau"
+   ]
+  },
+  "Making Friends with My Arm": {
+   "skills": [
+    {
+     "skill": "firemaking",
+     "level": 66,
+     "boostable": false
+    },
+    {
+     "skill": "mining",
+     "level": 72,
+     "boostable": true
+    },
+    {
+     "skill": "construction",
+     "level": 35,
+     "boostable": true
+    },
+    {
+     "skill": "agility",
+     "level": 68,
+     "boostable": true
+    }
+   ],
+   "quests": [
+    "My Arm's Big Adventure",
+    "Eadgar's Ruse",
+    "Druidic Ritual",
+    "Troll Stronghold",
+    "Death Plateau",
+    "The Feud",
+    "Jungle Potion",
+    "Swan Song",
+    "One Small Favour",
+    "Rune Mysteries",
+    "Shilo Village",
+    "Garden of Tranquillity",
+    "Creature of Fenkenstrain",
+    "Priest in Peril",
+    "The Restless Ghost",
+    "Cold War",
+    "Romeo & Juliet"
+   ]
+  },
+  "Monkey Madness II": {
+   "skills": [
+    {
+     "skill": "slayer",
+     "level": 69,
+     "boostable": false
+    },
+    {
+     "skill": "crafting",
+     "level": 70,
+     "boostable": false
+    },
+    {
+     "skill": "hunter",
+     "level": 60,
+     "boostable": false
+    },
+    {
+     "skill": "agility",
+     "level": 55,
+     "boostable": false
+    },
+    {
+     "skill": "thieving",
+     "level": 55,
+     "boostable": false
+    },
+    {
+     "skill": "firemaking",
+     "level": 60,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Enlightened Journey",
+    "The Eyes of Glouphrie",
+    "Recipe for Disaster/Freeing King Awowogei",
+    "Monkey Madness I",
+    "The Grand Tree",
+    "Tree Gnome Village",
+    "Troll Stronghold",
+    "Death Plateau",
+    "Watchtower"
+   ]
+  },
+  "A Night at the Theatre": {
+   "skills": [],
+   "quests": [
+    "A Taste of Hope",
+    "Darkness of Hallowvale",
+    "In Aid of the Myreque",
+    "In Search of the Myreque",
+    "Nature Spirit",
+    "Priest in Peril",
+    "The Restless Ghost"
+   ]
+  },
+  "Dragon Slayer II": {
+   "skills": [
+    {
+     "skill": "magic",
+     "level": 75,
+     "boostable": false
+    },
+    {
+     "skill": "smithing",
+     "level": 70,
+     "boostable": false
+    },
+    {
+     "skill": "mining",
+     "level": 68,
+     "boostable": false
+    },
+    {
+     "skill": "crafting",
+     "level": 62,
+     "boostable": false
+    },
+    {
+     "skill": "agility",
+     "level": 60,
+     "boostable": false
+    },
+    {
+     "skill": "thieving",
+     "level": 60,
+     "boostable": false
+    },
+    {
+     "skill": "construction",
+     "level": 50,
+     "boostable": false
+    },
+    {
+     "skill": "hitpoints",
+     "level": 50,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Legends' Quest",
+    "Family Crest",
+    "Heroes' Quest",
+    "Shield of Arrav",
+    "Lost City",
+    "Merlin's Crystal",
+    "Dragon Slayer I",
+    "Underground Pass",
+    "Biohazard",
+    "Plague City",
+    "Waterfall Quest",
+    "Dream Mentor",
+    "Lunar Diplomacy",
+    "The Fremennik Trials",
+    "Rune Mysteries",
+    "Shilo Village",
+    "Jungle Potion",
+    "Eadgar's Ruse",
+    "Druidic Ritual",
+    "Troll Stronghold",
+    "Death Plateau",
+    "A Tail of Two Cats",
+    "Icthlarin's Little Helper",
+    "Gertrude's Cat",
+    "Animal Magnetism",
+    "Ernest the Chicken",
+    "Priest in Peril",
+    "The Restless Ghost",
+    "Ghosts Ahoy",
+    "Bone Voyage",
+    "The Dig Site",
+    "Client of Kourend",
+    "X Marks the Spot"
+   ],
+   "questPoints": 200
+  },
+  "Secrets of the North": {
+   "skills": [
+    {
+     "skill": "agility",
+     "level": 69,
+     "boostable": false
+    },
+    {
+     "skill": "thieving",
+     "level": 64,
+     "boostable": false
+    },
+    {
+     "skill": "hunter",
+     "level": 56,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Making Friends with My Arm",
+    "My Arm's Big Adventure",
+    "Eadgar's Ruse",
+    "Druidic Ritual",
+    "Troll Stronghold",
+    "Death Plateau",
+    "The Feud",
+    "Jungle Potion",
+    "Swan Song",
+    "One Small Favour",
+    "Rune Mysteries",
+    "Shilo Village",
+    "Garden of Tranquillity",
+    "Creature of Fenkenstrain",
+    "Priest in Peril",
+    "The Restless Ghost",
+    "Cold War",
+    "Romeo & Juliet",
+    "The General's Shadow",
+    "Curse of the Empty Lord",
+    "Fight Arena",
+    "Devious Minds",
+    "Wanted!",
+    "Recruitment Drive",
+    "Black Knights' Fortress",
+    "The Lost Tribe",
+    "Goblin Diplomacy",
+    "Doric's Quest",
+    "Enter the Abyss",
+    "Hazeel Cult"
+   ]
+  },
+  "While Guthix Sleeps": {
+   "skills": [
+    {
+     "skill": "thieving",
+     "level": 72,
+     "boostable": false
+    },
+    {
+     "skill": "magic",
+     "level": 67,
+     "boostable": false
+    },
+    {
+     "skill": "agility",
+     "level": 66,
+     "boostable": false
+    },
+    {
+     "skill": "farming",
+     "level": 65,
+     "boostable": false
+    },
+    {
+     "skill": "herblore",
+     "level": 65,
+     "boostable": false
+    },
+    {
+     "skill": "hunter",
+     "level": 62,
+     "boostable": false
+    },
+    {
+     "skill": "firemaking",
+     "level": 49,
+     "boostable": false
+    },
+    {
+     "skill": "attack",
+     "level": 99,
+     "boostable": false
+    },
+    {
+     "skill": "strength",
+     "level": 99,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Defender of Varrock",
+    "Shield of Arrav",
+    "Temple of Ikov",
+    "Below Ice Mountain",
+    "Family Crest",
+    "What Lies Below",
+    "Romeo & Juliet",
+    "Demon Slayer",
+    "Garden of Tranquillity",
+    "Creature of Fenkenstrain",
+    "Priest in Peril",
+    "The Restless Ghost",
+    "The Path of Glouphrie",
+    "The Eyes of Glouphrie",
+    "The Grand Tree",
+    "Waterfall Quest",
+    "Tree Gnome Village",
+    "Fight Arena",
+    "Dream Mentor",
+    "Eadgar's Ruse",
+    "Druidic Ritual",
+    "Troll Stronghold",
+    "Death Plateau",
+    "Lunar Diplomacy",
+    "The Fremennik Trials",
+    "Lost City",
+    "Shilo Village",
+    "Jungle Potion",
+    "The Hand in the Sand",
+    "Wanted!",
+    "Recruitment Drive",
+    "Black Knights' Fortress",
+    "The Lost Tribe",
+    "Goblin Diplomacy",
+    "Temple of the Eye",
+    "Enter the Abyss",
+    "Rune Mysteries",
+    "Tears of Guthix",
+    "Nature Spirit",
+    "A Tail of Two Cats",
+    "Icthlarin's Little Helper",
+    "Gertrude's Cat"
+   ],
+   "questPoints": 180
+  },
+  "Song of the Elves": {
+   "skills": [
+    {
+     "skill": "agility",
+     "level": 70,
+     "boostable": false
+    },
+    {
+     "skill": "construction",
+     "level": 70,
+     "boostable": false
+    },
+    {
+     "skill": "farming",
+     "level": 70,
+     "boostable": false
+    },
+    {
+     "skill": "herblore",
+     "level": 70,
+     "boostable": false
+    },
+    {
+     "skill": "hunter",
+     "level": 70,
+     "boostable": false
+    },
+    {
+     "skill": "mining",
+     "level": 70,
+     "boostable": false
+    },
+    {
+     "skill": "smithing",
+     "level": 70,
+     "boostable": false
+    },
+    {
+     "skill": "woodcutting",
+     "level": 70,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Mourning's End Part II",
+    "Mourning's End Part I",
+    "Big Chompy Bird Hunting",
+    "Sheep Herder",
+    "Roving Elves",
+    "Waterfall Quest",
+    "Regicide",
+    "Underground Pass",
+    "Biohazard",
+    "Plague City",
+    "Making History",
+    "Priest in Peril",
+    "The Restless Ghost",
+    "Druidic Ritual"
+   ]
+  },
+  "Desert Treasure II - The Fallen Empire": {
+   "skills": [
+    {
+     "skill": "firemaking",
+     "level": 75,
+     "boostable": false
+    },
+    {
+     "skill": "magic",
+     "level": 75,
+     "boostable": false
+    },
+    {
+     "skill": "thieving",
+     "level": 70,
+     "boostable": false
+    },
+    {
+     "skill": "herblore",
+     "level": 62,
+     "boostable": false
+    },
+    {
+     "skill": "runecraft",
+     "level": 60,
+     "boostable": false
+    },
+    {
+     "skill": "construction",
+     "level": 60,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "Desert Treasure I",
+    "The Dig Site",
+    "Temple of Ikov",
+    "The Tourist Trap",
+    "Troll Stronghold",
+    "Death Plateau",
+    "Priest in Peril",
+    "Waterfall Quest",
+    "Secrets of the North",
+    "Making Friends with My Arm",
+    "My Arm's Big Adventure",
+    "Eadgar's Ruse",
+    "Druidic Ritual",
+    "The Feud",
+    "Jungle Potion",
+    "Swan Song",
+    "One Small Favour",
+    "Rune Mysteries",
+    "Shilo Village",
+    "Garden of Tranquillity",
+    "Creature of Fenkenstrain",
+    "The Restless Ghost",
+    "Cold War",
+    "Romeo & Juliet",
+    "The General's Shadow",
+    "Curse of the Empty Lord",
+    "Fight Arena",
+    "Devious Minds",
+    "Wanted!",
+    "Recruitment Drive",
+    "Black Knights' Fortress",
+    "The Lost Tribe",
+    "Goblin Diplomacy",
+    "Doric's Quest",
+    "Enter the Abyss",
+    "Hazeel Cult",
+    "Enakhra's Lament",
+    "Temple of the Eye",
+    "The Garden of Death",
+    "Below Ice Mountain",
+    "His Faithful Servants"
+   ]
+  },
+  "The Blood Moon Rises": {
+   "skills": [
+    {
+     "skill": "slayer",
+     "level": 74,
+     "boostable": false
+    },
+    {
+     "skill": "woodcutting",
+     "level": 74,
+     "boostable": false
+    },
+    {
+     "skill": "smithing",
+     "level": 72,
+     "boostable": false
+    },
+    {
+     "skill": "cooking",
+     "level": 72,
+     "boostable": false
+    },
+    {
+     "skill": "fletching",
+     "level": 70,
+     "boostable": false
+    },
+    {
+     "skill": "mining",
+     "level": 66,
+     "boostable": false
+    },
+    {
+     "skill": "hunter",
+     "level": 65,
+     "boostable": false
+    },
+    {
+     "skill": "crafting",
+     "level": 64,
+     "boostable": false
+    },
+    {
+     "skill": "herblore",
+     "level": 64,
+     "boostable": false
+    },
+    {
+     "skill": "magic",
+     "level": 57,
+     "boostable": false
+    }
+   ],
+   "quests": [
+    "A Night at the Theatre",
+    "Sins of the Father",
+    "Vampyre Slayer",
+    "A Taste of Hope",
+    "Darkness of Hallowvale",
+    "In Aid of the Myreque",
+    "In Search of the Myreque",
+    "Nature Spirit",
+    "Priest in Peril",
+    "The Restless Ghost"
+   ]
+  }
+ }
+}

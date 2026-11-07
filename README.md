@@ -1,1 +1,81 @@
-# OSRS-App
+# Iron Funyon Ironman Planner
+
+A single-user, mobile-first web app that tells **Iron Funyon** what to do next. It walks the OSRS Wiki's
+[Optimal quest guide/Ironman](https://oldschool.runescape.wiki/w/Optimal_quest_guide/Ironman) in order, skips what
+the player has already done, and lets the player stack goals and todos on top. Ironman only: nothing in it suggests
+buying from the GE or trading.
+
+## Run it
+
+```bash
+npm install
+npm run dev        # http://localhost:5173
+npm test           # vitest: parser, requirements, completion rules, store round-trip
+npm run build      # type-check + static build in dist/
+npm run build-guide   # re-fetch the guide + quest requirements from the wiki into src/data/
+```
+
+No backend. Everything is stored in the browser's `localStorage` under `ironPlanner:v1`, with JSON export/import for
+backup (Import → Backup). Deploy `dist/` anywhere static; `.github/workflows/deploy.yml` publishes it to GitHub Pages
+from `main` once Pages is enabled for the repo.
+
+## Data sources
+
+| Source | What it gives | How the app uses it |
+| --- | --- | --- |
+| WikiSync JSON export (paste or upload) | `quests` (0 / 1 / 2), `achievement_diaries`, `levels`, `combat_achievements` | Primary source for quests and diaries. The app **never calls `sync.runescape.wiki`** ([RS:SYNC](https://oldschool.runescape.wiki/w/RS:SYNC) asks third parties not to). Shows the import date and nags after 7 days. |
+| [Wise Old Man](https://docs.wiseoldman.net/api) `GET /v2/players/iron%20funyon` | Skill levels + XP, combat level | Refreshes levels between imports, cached 1 hour minimum. One `POST` update request per session at most, on a manual Refresh. |
+| Wiki MediaWiki API, `Optimal_quest_guide/Ironman` wikitext | The guide's Questing Order table | Parsed into ordered steps; cached 7 days; a pre-parsed `src/data/guide.json` ships as the offline fallback. |
+| Wiki quest pages (`{{Quest details}}`) | Skill / quest requirements per quest | Pre-fetched into `src/data/questReqs.json` by `build-guide`; missing ones are fetched lazily at runtime and cached. |
+
+Guide content is CC BY-NC-SA 3.0; the footer credits the wiki.
+
+### Level precedence
+
+The newer of the Wise Old Man snapshot and the WikiSync import wins. Unknown skills (e.g. `Sailing`) are carried
+through without crashing.
+
+## How Next Up is chosen
+
+1. In-progress quests (status 1) first, in guide order, tagged **In progress**.
+2. Then the guide from the top: steps that are not done and not skipped, until 5 (toggle to 20).
+3. Blocked steps are **not hidden**. They show a red chip like `Needs 50 Agility (you: 42)` linking to the training
+   page; boostable requirements show amber.
+4. Steps that are prerequisites of a pinned goal within the next 20 get a `Helps: <goal>` tag.
+
+### Completion rules
+
+- Quest step: done when the import has the quest at status 2 (names are matched after normalising apostrophes,
+  dashes, roman numerals and `/` vs ` - `, plus a small alias table in `src/lib/names.ts`).
+- Partial step (the guide splits some quests): done when the quest is status 1 or 2.
+- Diary step: done when `achievement_diaries[area][tier].complete`; "All Easy" needs every area.
+- Training / unlock / gather steps: manual check-off only.
+- Manual Done / Skip always win over imported data.
+
+## Guide parser
+
+`src/lib/wikitext.ts` parses the wikitext (not rendered HTML). It splits the Questing Order table on `|-`, takes the
+first `[[link]]` as the step name, reads the `{{Optimal quest|skill=xp}}` running XP totals (converted to levels),
+`{{Optimal quest/qp|n}}`, the checklist bullets, and the location. `{{Optimal quest/train|skill|level}}` lines, which
+the guide inserts between quests, become `Train <Skill> to <level>` steps. Rows that fail to parse are logged, never
+silently dropped; the test suite asserts fewer than 2% unparsed. Current snapshot: 340 steps from 237 rows, 0 unparsed.
+
+## Fixture
+
+`fixtures/wikisync-2025-10-31.json` is a **synthetic** WikiSync export shaped to the acceptance checks (Learning the
+Ropes / Cook's Assistant / The Restless Ghost done; Imp Catcher, Prince Ali Rescue, Animal Magnetism, Fairytale II and
+Rag and Bone Man II in progress; Ardougne Easy and Varrock Easy complete). Replace it with the real 10/31 export to
+test against actual data; the tests only assume those facts plus the real skill levels from Wise Old Man.
+
+`fixtures/guide.wikitext` is the real guide wikitext as fetched; `npm run build-guide -- --offline` re-parses it
+without the network.
+
+## Layout
+
+```
+scripts/build-guide.ts   fetch wiki → src/data/{guide,questReqs,questNames}.json
+src/lib/                 wikitext parser, quest-requirements parser, WikiSync import, WOM client, completion logic
+src/store/               zustand store persisted to localStorage (ironPlanner:v1)
+src/components/          Header, NextUp/StepCard, Goals, Todo, ImportDialog, FlagBadge
+tests/                   vitest suites
+```

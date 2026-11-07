@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { -webkit-tap-highlight-color: transparent; }
+body { padding-bottom: env(safe-area-inset-bottom); }
+
+.btn { @apply inline-flex items-center justify-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium transition active:scale-95 disabled:opacity-40 disabled:active:scale-100; }
+.btn-primary { @apply btn bg-amber-500 text-zinc-950 hover:bg-amber-400; }
+.btn-ghost { @apply btn bg-zinc-800 text-zinc-100 hover:bg-zinc-700; }
+.btn-danger { @apply btn bg-red-900/60 text-red-100 hover:bg-red-900; }
+.chip { @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium; }
+.card { @apply rounded-lg border border-zinc-800 bg-zinc-900 p-3 shadow-sm; }
+.input { @apply w-full rounded-md border border-zinc-700 bg-zinc-800 px-2 py-1.5 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-amber-500 focus:outline-none; }
