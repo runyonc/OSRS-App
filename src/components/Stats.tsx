@@ -7,7 +7,11 @@ import { skillLabel, xpForLevel, levelForXp, SKILLS, XP_TABLE_SOURCE } from '../
 import { planXp, actionsNeeded, hoursNeeded, STATS_ORDER, GEAR_SLOTS } from '../lib/xpcalc';
 import { wikiPageUrl, trainingUrl } from '../lib/wiki';
 import ItemInput from './ItemInput';
+import ItemIcon from './ItemIcon';
+import MaxHit from './MaxHit';
 import SkillIcon from './SkillIcon';
+import { useEquipment } from '../hooks/useEquipment';
+import type { StatKey } from '../lib/equipment';
 
 const fmt = (n: number) => n.toLocaleString();
 
@@ -18,6 +22,7 @@ export default function Stats() {
       <XpCalculator />
       <XpTable />
       <GearSetups />
+      <MaxHit />
     </section>
   );
 }
@@ -206,7 +211,7 @@ function GearSetups() {
   return (
     <div>
       <div className="flex items-center justify-between gap-2">
-        <h2 className="font-display text-sm font-semibold">Gear I'm using <span className="text-[11px] font-normal text-zinc-500">· type a slot to search every item</span></h2>
+        <h2 className="font-display text-sm font-semibold">Gear I'm using <span className="text-[11px] font-normal text-zinc-500">· every equippable, with bonuses</span></h2>
         <form className="flex gap-1.5" onSubmit={(e) => { e.preventDefault(); const id = addGearSetup(name || 'Setup'); setName(''); setOpen(id); }}>
           <input id="gear-name" className="input !w-36" placeholder="Melee, Ranged, Slayer…" value={name} onChange={(e) => setName(e.target.value)} />
           <button type="submit" className="btn-primary whitespace-nowrap">+ Setup</button>
@@ -229,7 +234,7 @@ function GearSetups() {
               {!isOpen ? (
                 <div className="mt-1 flex flex-wrap gap-1">
                   {GEAR_SLOTS.filter((s) => g.slots[s]?.trim()).map((s) => (
-                    <a key={s} className="chip bg-zinc-800 text-zinc-300" href={wikiPageUrl(g.slots[s])} target="_blank" rel="noreferrer">{g.slots[s]}</a>
+                    <a key={s} className="chip bg-zinc-800 text-zinc-300" href={wikiPageUrl(g.slots[s])} target="_blank" rel="noreferrer"><ItemIcon name={g.slots[s]} size={18} /> {g.slots[s]}</a>
                   ))}
                 </div>
               ) : (
@@ -238,17 +243,75 @@ function GearSetups() {
                   {GEAR_SLOTS.map((slot) => (
                     <label key={slot} className="flex items-center gap-2 text-xs">
                       <span className="w-14 shrink-0 capitalize text-zinc-400">{slot}</span>
+                      <ItemIcon name={g.slots[slot] ?? ''} size={22} />
                       <ItemInput id={`gear-${g.id}-${slot}`} className="flex-1" slot={slot} placeholder="—" value={g.slots[slot] ?? ''} onChange={(v) => updateGearSetup(g.id, { slot: { key: slot, value: v } })} />
                       {g.slots[slot]?.trim() ? <a className="shrink-0 text-amber-400" href={wikiPageUrl(g.slots[slot])} target="_blank" rel="noreferrer" title="Open on the wiki">↗</a> : <span className="w-3" />}
                     </label>
                   ))}
                   <textarea className="input min-h-[3rem] text-xs" placeholder="Notes: inventory, switches, what to upgrade next" value={g.notes} onChange={(e) => updateGearSetup(g.id, { notes: e.target.value })} aria-label="Setup notes" />
+                  <SetupStats slots={g.slots} />
                 </div>
               )}
             </li>
           );
         })}
       </ul>
+    </div>
+  );
+}
+
+const ATTACK_KEYS: StatKey[] = ['astab', 'aslash', 'acrush', 'amagic', 'arange'];
+const DEFENCE_KEYS: StatKey[] = ['dstab', 'dslash', 'dcrush', 'dmagic', 'drange'];
+const OTHER_KEYS: StatKey[] = ['str', 'rstr', 'mdmg', 'prayer'];
+const SHORT: Record<StatKey, string> = { astab: 'Stab', aslash: 'Slash', acrush: 'Crush', amagic: 'Magic', arange: 'Range', dstab: 'Stab', dslash: 'Slash', dcrush: 'Crush', dmagic: 'Magic', drange: 'Range', str: 'Str', rstr: 'R.str', mdmg: 'M.dmg', prayer: 'Prayer' };
+
+/** Equipment-screen style bonus totals for a setup, plus unmet level requirements. */
+function SetupStats({ slots }: { slots: Record<string, string> }) {
+  const eq = useEquipment();
+  const { levels } = useLevels();
+  const r = useMemo(() => (eq ? eq.setupStats(slots) : null), [eq, slots]);
+  if (!r) return <p className="text-[11px] text-zinc-500">Loading equipment data…</p>;
+  const unmet: string[] = [];
+  for (const [slot, item] of Object.entries(r.items)) {
+    if (!item?.req) continue;
+    for (const [skill, lvl] of Object.entries(item.req)) if (levelOf(levels, skill) < lvl) unmet.push(`${slot}: ${item.n} needs ${lvl} ${skillLabel(skill)} (you: ${levelOf(levels, skill)})`);
+  }
+  const sign = (n: number) => (n > 0 ? `+${n}` : String(n));
+  const row = (title: string, keys: StatKey[]) => (
+    <div>
+      <div className="text-[10px] uppercase tracking-wide text-zinc-500">{title}</div>
+      <div className="grid grid-cols-5 gap-1">
+        {keys.map((k) => (
+          <div key={k} className="rounded bg-zinc-800/70 px-1 py-0.5 text-center">
+            <div className="text-[9px] text-zinc-500">{SHORT[k]}</div>
+            <div className={`text-xs tabular-nums ${r.total[k] > 0 ? 'text-zinc-100' : r.total[k] < 0 ? 'text-red-300' : 'text-zinc-500'}`}>{k === 'mdmg' ? `${sign(r.total[k])}%` : sign(r.total[k])}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+  return (
+    <div className="mt-1 space-y-1.5 rounded-md border border-zinc-800 p-2">
+      {row('Attack bonus', ATTACK_KEYS)}
+      {row('Defence bonus', DEFENCE_KEYS)}
+      <div>
+        <div className="text-[10px] uppercase tracking-wide text-zinc-500">Other</div>
+        <div className="grid grid-cols-5 gap-1">
+          {OTHER_KEYS.map((k) => (
+            <div key={k} className="rounded bg-zinc-800/70 px-1 py-0.5 text-center">
+              <div className="text-[9px] text-zinc-500">{SHORT[k]}</div>
+              <div className={`text-xs tabular-nums ${r.total[k] > 0 ? 'text-zinc-100' : 'text-zinc-500'}`}>{k === 'mdmg' ? `${sign(r.total[k])}%` : sign(r.total[k])}</div>
+            </div>
+          ))}
+          <div className="rounded bg-zinc-800/70 px-1 py-0.5 text-center">
+            <div className="text-[9px] text-zinc-500">Speed</div>
+            <div className="text-xs tabular-nums text-zinc-100">{r.speed ? `${r.speed}t` : '—'}</div>
+          </div>
+        </div>
+      </div>
+      {r.twoHanded && slots.shield?.trim() ? <p className="text-[11px] text-amber-300">Two-handed weapon: the shield slot is ignored.</p> : null}
+      {r.unknown.length ? <p className="text-[11px] text-amber-300">Not in the equipment database: {r.unknown.join(', ')}</p> : null}
+      {unmet.map((u) => <p key={u} className="text-[11px] text-red-300">{u}</p>)}
     </div>
   );
 }

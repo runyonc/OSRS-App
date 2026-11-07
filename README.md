@@ -59,11 +59,16 @@ through without crashing.
 - **XP calculator**: pick a skill and target level; current XP is prefilled and can be overridden. Enter a method's
   XP per action (and optionally actions per hour) to get the number of actions and hours; saved methods stay with
   the skill.
-- **Gear I'm using**: named setups (melee, ranged, Slayer…) with the 11 equipment slots and notes. Each filled slot
-  links to its wiki page. Slots autocomplete from the bundled item database: every item name in the game
-  (`src/data/items.json`, from RuneLite's public cache listing) plus the wiki's per-slot equipment categories
-  (`src/data/equipment.json`), so a weapon slot searches weapons first. `npm run build-items` refreshes both. The
-  database loads lazily on first use.
+- **Gear I'm using**: named setups (melee, ranged, Slayer…) with the 11 equipment slots and notes. Slots
+  autocomplete from the bundled **equipment database**: every equippable on the wiki (3,956 items) with its
+  inventory icon, attack and defence bonuses, melee/ranged strength, magic damage, prayer bonus, attack speed and
+  level requirements. Each setup shows an equipment-screen style bonus panel and warns about requirements you do
+  not meet. `npm run build-equipment` rebuilds `src/data/equipment.json` from the wiki's slot categories and
+  `{{Infobox Bonuses}}`, and packs the icons into `public/equipment-sprite.png`.
+- **Max hit**: picks a setup, reads its bonuses and your levels, and computes melee, ranged or magic max hits with
+  attack style, prayer and potion choices, spell selection for magic, and gear-driven modifiers (void, slayer helm
+  on task, salve amulet, berserker necklace, chaos gauntlets, tome of fire). Formulas follow the wiki's Maximum hit
+  pages and every step is shown.
 
 ## Milestones: gear, combat and Slayer
 
@@ -112,6 +117,8 @@ without the network.
 ```
 scripts/build-guide.ts   fetch wiki → src/data/{guide,questReqs,questNames}.json
 src/data/milestones.ts   curated gear / combat / Slayer milestones
+src/data/equipment.json  every equippable with bonuses (build-equipment), equipmentSprite.json maps icons
+scripts/build-equipment.ts, scripts/build-sprite.py   rebuild the equipment database and icon sprite
 src/lib/                 wikitext parser, quest-requirements parser, WikiSync import, WOM client, completion + milestone logic
 src/store/               zustand store persisted to localStorage (ironPlanner:v1)
 src/components/          Header, NextUp/StepCard, MilestoneCard, Goals, Todo, Stats, ImportDialog, FlagBadge
