@@ -6,6 +6,7 @@ import { combatLevel } from '../lib/milestones';
 import { skillLabel, xpForLevel, levelForXp, SKILLS } from '../lib/xp';
 import { planXp, actionsNeeded, hoursNeeded, STATS_ORDER, GEAR_SLOTS } from '../lib/xpcalc';
 import { wikiPageUrl, trainingUrl } from '../lib/wiki';
+import ItemInput from './ItemInput';
 
 const fmt = (n: number) => n.toLocaleString();
 
@@ -166,7 +167,7 @@ function GearSetups() {
   return (
     <div>
       <div className="flex items-center justify-between gap-2">
-        <h2 className="text-sm font-semibold">Gear I'm using</h2>
+        <h2 className="text-sm font-semibold">Gear I'm using <span className="text-[11px] font-normal text-zinc-500">· type a slot to search every item</span></h2>
         <form className="flex gap-1.5" onSubmit={(e) => { e.preventDefault(); const id = addGearSetup(name || 'Setup'); setName(''); setOpen(id); }}>
           <input id="gear-name" className="input !w-36" placeholder="Melee, Ranged, Slayer…" value={name} onChange={(e) => setName(e.target.value)} />
           <button type="submit" className="btn-primary whitespace-nowrap">+ Setup</button>
@@ -198,7 +199,7 @@ function GearSetups() {
                   {GEAR_SLOTS.map((slot) => (
                     <label key={slot} className="flex items-center gap-2 text-xs">
                       <span className="w-14 shrink-0 capitalize text-zinc-400">{slot}</span>
-                      <input id={`gear-${g.id}-${slot}`} className="input" placeholder="—" value={g.slots[slot] ?? ''} onChange={(e) => updateGearSetup(g.id, { slot: { key: slot, value: e.target.value } })} />
+                      <ItemInput id={`gear-${g.id}-${slot}`} className="flex-1" slot={slot} placeholder="—" value={g.slots[slot] ?? ''} onChange={(v) => updateGearSetup(g.id, { slot: { key: slot, value: v } })} />
                       {g.slots[slot]?.trim() ? <a className="shrink-0 text-amber-400" href={wikiPageUrl(g.slots[slot])} target="_blank" rel="noreferrer" title="Open on the wiki">↗</a> : <span className="w-3" />}
                     </label>
                   ))}

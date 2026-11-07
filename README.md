@@ -60,7 +60,10 @@ through without crashing.
   XP per action (and optionally actions per hour) to get the number of actions and hours; saved methods stay with
   the skill.
 - **Gear I'm using**: named setups (melee, ranged, Slayer…) with the 11 equipment slots and notes. Each filled slot
-  links to its wiki page.
+  links to its wiki page. Slots autocomplete from the bundled item database: every item name in the game
+  (`src/data/items.json`, from RuneLite's public cache listing) plus the wiki's per-slot equipment categories
+  (`src/data/equipment.json`), so a weapon slot searches weapons first. `npm run build-items` refreshes both. The
+  database loads lazily on first use.
 
 ## Milestones: gear, combat and Slayer
 
