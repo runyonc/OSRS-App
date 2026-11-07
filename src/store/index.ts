@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import type { PlayerData, LiveLevels, GuideStep, QuestReqs, StepProgress, Goal, Todo, Bottleneck, TodoTag } from '../lib/types';
+import type { PlayerData, LiveLevels, GuideStep, QuestReqs, StepProgress, Goal, Todo, Bottleneck, TodoTag, MilestoneProgress } from '../lib/types';
 import guideJson from '../data/guide.json';
 import reqsJson from '../data/questReqs.json';
 import { DEFAULT_FLAG_NOTES } from '../lib/completion';
@@ -15,6 +15,7 @@ export interface AppState {
   goals: Goal[];
   todos: Todo[];
   flags: Record<Bottleneck, string>;
+  milestones: Record<string, MilestoneProgress>;
   ui: { tab: 'next' | 'goals' | 'todo'; expanded: boolean; womUpdateRequested: boolean };
 
   setPlayer: (p: PlayerData) => void;
@@ -33,6 +34,7 @@ export interface AppState {
   toggleTodo: (id: string) => void;
   removeTodo: (id: string) => void;
   setFlagNote: (flag: Bottleneck, note: string) => void;
+  setMilestoneDone: (id: string, done: boolean | undefined) => void;
   setTab: (tab: AppState['ui']['tab']) => void;
   setExpanded: (v: boolean) => void;
   setWomUpdateRequested: () => void;
@@ -44,7 +46,7 @@ export interface AppState {
 const bundledGuide = { fetchedAt: (guideJson as any).fetchedAt as number, steps: (guideJson as any).steps as GuideStep[], source: 'bundled' as const };
 const bundledReqs = (reqsJson as any).reqs as Record<string, QuestReqs>;
 
-export const PERSISTED_KEYS = ['player', 'liveLevels', 'guide', 'questReqs', 'progress', 'goals', 'todos', 'flags', 'ui'] as const;
+export const PERSISTED_KEYS = ['player', 'liveLevels', 'guide', 'questReqs', 'progress', 'goals', 'todos', 'flags', 'milestones', 'ui'] as const;
 
 const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
 
@@ -59,6 +61,7 @@ export const useStore = create<AppState>()(
       goals: [],
       todos: [],
       flags: { ...DEFAULT_FLAG_NOTES },
+      milestones: {},
       ui: { tab: 'next', expanded: false, womUpdateRequested: false },
 
       setPlayer: (player) => set({ player }),
@@ -103,6 +106,13 @@ export const useStore = create<AppState>()(
         set((s) => ({ todos: s.todos.map((t) => (t.id === id ? { ...t, done: !t.done, doneAt: t.done ? undefined : Date.now() } : t)) })),
       removeTodo: (id) => set((s) => ({ todos: s.todos.filter((t) => t.id !== id) })),
       setFlagNote: (flag, note) => set((s) => ({ flags: { ...s.flags, [flag]: note } })),
+      setMilestoneDone: (id, done) =>
+        set((s) => {
+          const milestones = { ...s.milestones };
+          if (done === undefined) delete milestones[id];
+          else milestones[id] = { done, at: Date.now() };
+          return { milestones };
+        }),
       setTab: (tab) => set((s) => ({ ui: { ...s.ui, tab } })),
       setExpanded: (expanded) => set((s) => ({ ui: { ...s.ui, expanded } })),
       setWomUpdateRequested: () => set((s) => ({ ui: { ...s.ui, womUpdateRequested: true } })),
@@ -119,7 +129,7 @@ export const useStore = create<AppState>()(
         for (const k of PERSISTED_KEYS) if (k in data) (patch as any)[k] = data[k];
         set(patch);
       },
-      resetAll: () => set({ player: null, liveLevels: null, guide: bundledGuide, questReqs: bundledReqs, progress: {}, goals: [], todos: [], flags: { ...DEFAULT_FLAG_NOTES }, ui: { tab: 'next', expanded: false, womUpdateRequested: false } }),
+      resetAll: () => set({ player: null, liveLevels: null, guide: bundledGuide, questReqs: bundledReqs, progress: {}, goals: [], todos: [], flags: { ...DEFAULT_FLAG_NOTES }, milestones: {}, ui: { tab: 'next', expanded: false, womUpdateRequested: false } }),
     }),
     {
       name: STORAGE_KEY,
@@ -131,6 +141,7 @@ export const useStore = create<AppState>()(
         if (!persisted?.guide?.steps?.length || (persisted.guide.source === 'bundled' && persisted.guide.fetchedAt < bundledGuide.fetchedAt)) merged.guide = bundledGuide;
         merged.questReqs = { ...bundledReqs, ...(persisted?.questReqs ?? {}) };
         merged.flags = { ...DEFAULT_FLAG_NOTES, ...(persisted?.flags ?? {}) };
+        merged.milestones = persisted?.milestones ?? {};
         merged.ui = { tab: 'next', expanded: false, ...(persisted?.ui ?? {}), womUpdateRequested: false };
         return merged;
       },

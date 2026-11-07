@@ -1,0 +1,208 @@
+/**
+ * Curated ironman progression milestones beyond the quest guide: gear, combat and Slayer.
+ * Requirements are what the game checks; `how` is the self-sufficient route (no GE, no trading).
+ * Everything links to its wiki page for the details that change.
+ */
+export type MilestoneCategory = 'gear' | 'combat' | 'slayer';
+export type MilestoneStage = 'early' | 'mid' | 'late';
+
+export interface Milestone {
+  id: string;
+  name: string;
+  category: MilestoneCategory;
+  stage: MilestoneStage;
+  /** Wiki page title. */
+  wiki: string;
+  /** Ironman route in one or two sentences. */
+  how: string;
+  reqs: {
+    skills?: Record<string, number>;
+    combat?: number;
+    quests?: string[];
+    /** "Area:Tier" */
+    diaries?: string[];
+    milestones?: string[];
+    questPoints?: number;
+  };
+  /** Done automatically once every requirement is met (unlocks). Gear is always ticked by hand. */
+  auto?: boolean;
+}
+
+export const MILESTONES: Milestone[] = [
+  // ---------------- GEAR ----------------
+  { id: 'graceful', name: 'Full Graceful outfit', category: 'gear', stage: 'early', wiki: 'Graceful outfit',
+    how: '260 marks of grace from rooftop courses. Canifis (40 Agility) has the best mark rate until 60; Seers\' Village after Kandarin hard.',
+    reqs: { skills: { agility: 40 } } },
+  { id: 'dragon-scimitar', name: 'Dragon scimitar', category: 'gear', stage: 'early', wiki: 'Dragon scimitar',
+    how: 'Buy from Daga on Ape Atoll for 100,000 coins after Monkey Madness I. Save the coins from quest rewards and Barrows.',
+    reqs: { skills: { attack: 60 }, quests: ['Monkey Madness I'] } },
+  { id: 'rune-defender', name: 'Rune defender', category: 'gear', stage: 'early', wiki: 'Rune defender',
+    how: 'Warriors\' Guild: get Attack + Strength to 130 total (or 99 in one), earn tokens on the animator with a full armour set, then climb the defender ladder from bronze on the cyclopes.',
+    reqs: { skills: { attack: 65, strength: 65 } } },
+  { id: 'dragon-defender', name: 'Dragon defender', category: 'gear', stage: 'mid', wiki: 'Dragon defender',
+    how: 'Basement cyclopes of the Warriors\' Guild drop it while you hold or wear a rune defender. 100 tokens to enter, 10 per minute.',
+    reqs: { milestones: ['rune-defender'] } },
+  { id: 'fighter-torso', name: 'Fighter torso', category: 'gear', stage: 'early', wiki: 'Fighter torso',
+    how: '375 honour points in each Barbarian Assault role. Best body for ironmen until Bandos; also feeds the Kandarin diary.',
+    reqs: {} },
+  { id: 'avas-accumulator', name: 'Ava\'s accumulator', category: 'gear', stage: 'early', wiki: 'Ava\'s accumulator',
+    how: 'From Ava after Animal Magnetism with 50 Ranged (75 steel arrows to upgrade the attractor). Pick it up on the way, it saves every arrow you fletch.',
+    reqs: { skills: { ranged: 50 }, quests: ['Animal Magnetism'] } },
+  { id: 'helm-of-neitiznot', name: 'Helm of neitiznot', category: 'gear', stage: 'early', wiki: 'Helm of neitiznot',
+    how: 'Reward shop after The Fremennik Isles, 50,000 coins. Best melee helm until Slayer helmet or Serpentine.',
+    reqs: { skills: { defence: 55 }, quests: ['The Fremennik Isles'] } },
+  { id: 'amulet-of-glory', name: 'Amulet of glory', category: 'gear', stage: 'early', wiki: 'Amulet of glory',
+    how: 'Cut a dragonstone (55 Crafting), craft with a gold bar at 80 Crafting, enchant with Lvl-5 Enchant (68 Magic). Charge at the Fountain of Heroes after Heroes\' Quest. Dragonstones come from gem rocks (Shilo), crystal chests and the rare drop table.',
+    reqs: { skills: { crafting: 80, magic: 68 }, quests: ['Heroes\' Quest'] } },
+  { id: 'barrows-gloves', name: 'Barrows gloves', category: 'gear', stage: 'mid', wiki: 'Barrows gloves',
+    how: 'Culinaromancer\'s Chest for 130,000 coins once every Recipe for Disaster subquest is done.',
+    reqs: { quests: ['Recipe for Disaster/Defeating the Culinaromancer'] } },
+  { id: 'fire-cape', name: 'Fire cape', category: 'combat', stage: 'mid', wiki: 'Fire cape',
+    how: 'Kill TzTok-Jad in the Fight Caves. Bring 70+ Ranged with a rune crossbow or blowpipe, Protect from Ranged/Magic swaps, and prayer potions you brewed yourself.',
+    reqs: { skills: { ranged: 70, prayer: 43 }, milestones: ['rune-crossbow'] } },
+  { id: 'rune-crossbow', name: 'Rune crossbow', category: 'gear', stage: 'early', wiki: 'Rune crossbow',
+    how: 'Drop from Crazy archaeologist, kurasks, lizardman shamans or brutal black dragons; or fletch it at 69 with rune limbs (91 Smithing) and a yew stock.',
+    reqs: { skills: { ranged: 61 } } },
+  { id: 'black-dhide', name: 'Black d\'hide body + chaps', category: 'gear', stage: 'mid', wiki: 'Black d\'hide body',
+    how: 'Tan black dragonhides from black dragons (Taverley, Evil Chicken\'s Lair, brutal blacks) and craft: chaps at 82, body at 84 Crafting. Also drops from Zulrah and the Barrows chest.',
+    reqs: { skills: { ranged: 70, crafting: 84 } } },
+  { id: 'full-void', name: 'Full Void Knight set', category: 'gear', stage: 'mid', wiki: 'Void Knight equipment',
+    how: 'Pest Control commendations: 250 per armour piece, 150 per helm, 250 for the gloves. 42 in every combat stat and 22 Prayer to wear.',
+    reqs: { skills: { attack: 42, strength: 42, defence: 42, hitpoints: 42, ranged: 42, magic: 42, prayer: 22 }, combat: 40 } },
+  { id: 'elite-void', name: 'Elite Void Knight set', category: 'gear', stage: 'late', wiki: 'Elite void knight equipment',
+    how: 'Upgrade the top and robe for 200 commendations each after the Western Provinces hard diary.',
+    reqs: { diaries: ['Western Provinces:Hard'], milestones: ['full-void'] } },
+  { id: 'rune-pouch', name: 'Rune pouch', category: 'gear', stage: 'mid', wiki: 'Rune pouch',
+    how: '750 Slayer reward points, or 75 points in Last Man Standing. Makes trident and barrage tasks painless.',
+    reqs: {} },
+  { id: 'barrows-set', name: 'A Barrows set (Guthan\'s or Dharok\'s)', category: 'gear', stage: 'mid', wiki: 'Barrows',
+    how: 'Barrows runs after Priest in Peril. Guthan\'s heals for Slayer; Dharok\'s for bursting Slayer tasks. 70 Defence to wear armour, 70 Attack for weapons.',
+    reqs: { skills: { defence: 70 }, quests: ['Priest in Peril'] } },
+  { id: 'dragon-boots', name: 'Dragon boots', category: 'gear', stage: 'mid', wiki: 'Dragon boots',
+    how: 'Spiritual mages in the God Wars Dungeon on an 83 Slayer task (Zamorak or Saradomin chambers are easiest to reach).',
+    reqs: { skills: { slayer: 83 }, quests: ['Troll Stronghold'] } },
+  { id: 'abyssal-whip', name: 'Abyssal whip', category: 'gear', stage: 'mid', wiki: 'Abyssal whip',
+    how: 'Abyssal demons at 85 Slayer, in the Slayer Tower or Catacombs of Kourend. 1/512 per kill.',
+    reqs: { skills: { slayer: 85, attack: 70 } } },
+  { id: 'trident', name: 'Trident of the seas', category: 'gear', stage: 'mid', wiki: 'Trident of the seas',
+    how: 'Cave kraken on an 87 Slayer task drop it (uncharged). Charge with death, chaos, fire runes and coins. Needs 75 Magic.',
+    reqs: { skills: { slayer: 87, magic: 75 } } },
+  { id: 'occult-necklace', name: 'Occult necklace', category: 'gear', stage: 'late', wiki: 'Occult necklace',
+    how: 'Smoke devils at 93 Slayer, or the Thermonuclear smoke devil boss on task. 70 Magic to wear.',
+    reqs: { skills: { slayer: 93, magic: 70 } } },
+  { id: 'slayer-helmet', name: 'Slayer helmet', category: 'slayer', stage: 'mid', wiki: 'Slayer helmet',
+    how: 'Unlock "Malevolent masquerade" for 400 Slayer points, then combine a black mask (cave horrors, 58 Slayer, needs Cabin Fever) with the four Slayer headpieces and an enchanted gem at 55 Crafting.',
+    reqs: { skills: { slayer: 58, crafting: 55 }, quests: ['Cabin Fever'] } },
+  { id: 'dragon-axe', name: 'Dragon axe', category: 'gear', stage: 'mid', wiki: 'Dragon axe',
+    how: 'Wintertodt supply crates (lucky) or Dagannoth Kings. 61 Woodcutting to use.',
+    reqs: { skills: { woodcutting: 61 } } },
+  { id: 'dragon-pickaxe', name: 'Dragon pickaxe', category: 'gear', stage: 'late', wiki: 'Dragon pickaxe',
+    how: 'Drop from King Black Dragon, Chaos Elemental, Callisto, Vet\'ion and Venenatis, or the Volcanic Mine reward shop. 61 Mining to use.',
+    reqs: { skills: { mining: 61 } } },
+  { id: 'berserker-ring', name: 'Berserker ring', category: 'gear', stage: 'late', wiki: 'Berserker ring',
+    how: 'Dagannoth Rex in the Waterbirth Island dungeon; the Lighthouse route needs Horror from the Deep. Rex is safe-spottable with melee or magic.',
+    reqs: { quests: ['The Fremennik Trials', 'Horror from the Deep'], combat: 85 } },
+  { id: 'bandos', name: 'Bandos chestplate + tassets', category: 'gear', stage: 'late', wiki: 'General Graardor',
+    how: 'General Graardor in the God Wars Dungeon; 70 Strength to enter the Bandos stronghold, 65 Defence to wear.',
+    reqs: { skills: { strength: 70, defence: 65, hitpoints: 70 }, quests: ['Troll Stronghold'] } },
+  { id: 'armadyl', name: 'Armadyl chestplate + chainskirt', category: 'gear', stage: 'late', wiki: 'Kree\'arra',
+    how: 'Kree\'arra in the God Wars Dungeon; 70 Agility to enter Armadyl\'s Eyrie, 70 Ranged to wear.',
+    reqs: { skills: { agility: 70, ranged: 70 }, quests: ['Troll Stronghold'] } },
+  { id: 'toxic-blowpipe', name: 'Toxic blowpipe', category: 'gear', stage: 'late', wiki: 'Toxic blowpipe',
+    how: 'Tanzanite fang from Zulrah (needs Regicide to reach Zul-Andra), fletched at 73. Your own Zulrah scales and darts keep it charged.',
+    reqs: { skills: { ranged: 75, fletching: 73 }, quests: ['Regicide'] } },
+  { id: 'avas-assembler', name: 'Ava\'s assembler', category: 'gear', stage: 'late', wiki: 'Ava\'s assembler',
+    how: 'Vorkath\'s head after Dragon Slayer II (guaranteed on the 50th kill), combined with an accumulator and 75 mithril arrows.',
+    reqs: { skills: { ranged: 70 }, quests: ['Dragon Slayer II'], milestones: ['avas-accumulator'] } },
+  { id: 'amulet-of-fury', name: 'Amulet of fury', category: 'gear', stage: 'late', wiki: 'Amulet of fury',
+    how: 'Cut an onyx (67 Crafting) from 300,000 tokkul or a Zulrah/Skotizo drop, craft at 90 Crafting, enchant with Lvl-6 Enchant (87 Magic).',
+    reqs: { skills: { crafting: 90, magic: 87 } } },
+  { id: 'bowfa', name: 'Bow of Faerdhinen', category: 'gear', stage: 'late', wiki: 'Bow of faerdhinen',
+    how: 'Enhanced crystal weapon seed from the Gauntlet after Song of the Elves, plus crystal shards. 80 Ranged and 70 Agility.',
+    reqs: { skills: { ranged: 80, agility: 70 }, quests: ['Song of the Elves'] } },
+
+  // ---------------- COMBAT ----------------
+  { id: 'protect-prayers', name: '43 Prayer: protection prayers', category: 'combat', stage: 'early', wiki: 'Protect from Melee',
+    how: 'Bury big bones and quest for it, or use the Ectofuntus / gilded altar once you have dragon bones from Vorkath later. Changes every boss fight.',
+    reqs: { skills: { prayer: 43 } }, auto: true },
+  { id: 'base-60', name: 'Base 60 melee stats', category: 'combat', stage: 'early', wiki: 'Pay-to-play melee training',
+    how: 'Quest XP covers most of it; Slayer and Nightmare Zone (after five quests) carry the rest.',
+    reqs: { skills: { attack: 60, strength: 60, defence: 60 } }, auto: true },
+  { id: 'base-70', name: 'Base 70 combat stats', category: 'combat', stage: 'mid', wiki: 'Combat level',
+    how: '70 Attack for whip and Barrows weapons, 70 Defence for Barrows armour, 70 Ranged/Magic for d\'hide and trident. Slayer is the ironman\'s training ground.',
+    reqs: { skills: { attack: 70, strength: 70, defence: 70, ranged: 70, magic: 70, hitpoints: 70 } }, auto: true },
+  { id: 'combat-85', name: 'Combat level 85', category: 'combat', stage: 'mid', wiki: 'Nieve',
+    how: 'Unlocks Nieve/Steve in the Tree Gnome Stronghold, the best Slayer master before Duradel.',
+    reqs: { combat: 85 }, auto: true },
+  { id: 'combat-100', name: 'Combat level 100', category: 'combat', stage: 'late', wiki: 'Duradel',
+    how: 'Unlocks Duradel in Shilo Village (needs the Shilo Village quest) and the best boss task rates.',
+    reqs: { combat: 100, quests: ['Shilo Village'] }, auto: true },
+  { id: 'ancient-magicks', name: 'Ancient Magicks', category: 'combat', stage: 'mid', wiki: 'Ancient Magicks',
+    how: 'Complete Desert Treasure I. Ice Burst at 70 Magic turns Slayer tasks like dust devils and nechryaels into fast XP.',
+    reqs: { quests: ['Desert Treasure I'] }, auto: true },
+  { id: 'lunar-spells', name: 'Lunar spells', category: 'combat', stage: 'mid', wiki: 'Lunar spells',
+    how: 'Complete Lunar Diplomacy. Vengeance (94 Magic) and NPC Contact are the ironman staples.',
+    reqs: { quests: ['Lunar Diplomacy'] }, auto: true },
+  { id: 'piety', name: 'Piety', category: 'combat', stage: 'mid', wiki: 'Piety',
+    how: 'King\'s Ransom, then the Knight Waves Training Grounds. 70 Prayer and 70 Defence to use.',
+    reqs: { skills: { prayer: 70, defence: 70 }, quests: ['King\'s Ransom'] }, auto: true },
+  { id: 'barrows-access', name: 'Barrows runs unlocked', category: 'combat', stage: 'early', wiki: 'Barrows',
+    how: 'Priest in Peril opens Morytania. Bring your own prayer potions and a spade; Morytania hard diary later gives free runes per chest.',
+    reqs: { quests: ['Priest in Peril'], skills: { magic: 50, prayer: 43 } }, auto: true },
+  { id: 'gwd-access', name: 'God Wars Dungeon access', category: 'combat', stage: 'late', wiki: 'God Wars Dungeon',
+    how: 'Troll Stronghold, then 60 Agility or 60 Strength for the entrance boulder. Each boss room has its own 70 stat requirement.',
+    reqs: { quests: ['Troll Stronghold'], skills: { agility: 60 } }, auto: true },
+  { id: 'zulrah-access', name: 'Zulrah unlocked', category: 'combat', stage: 'late', wiki: 'Zulrah',
+    how: 'Regicide to reach Zul-Andra. 75+ Ranged and Magic recommended; the drops supply herbs, scales and the blowpipe.',
+    reqs: { quests: ['Regicide'], skills: { ranged: 75, magic: 75 } }, auto: true },
+  { id: 'vorkath-access', name: 'Vorkath unlocked', category: 'combat', stage: 'late', wiki: 'Vorkath',
+    how: 'Dragon Slayer II. Best money and Prayer XP (superior dragon bones) an ironman has.',
+    reqs: { quests: ['Dragon Slayer II'] }, auto: true },
+
+  // ---------------- SLAYER ----------------
+  { id: 'slayer-konar', name: 'Switch to Konar', category: 'slayer', stage: 'early', wiki: 'Konar quo Maten',
+    how: 'Konar (Mount Karuulm) at 75 combat. Brimstone keys give magic logs for Desert Treasure I and ranarr seeds.',
+    reqs: { combat: 75 }, auto: true },
+  { id: 'slayer-50', name: '50 Slayer: bloodvelds', category: 'slayer', stage: 'early', wiki: 'Bloodveld',
+    how: 'Bloodvelds in the Slayer Tower or Catacombs are the first truly good XP task; Dharok\'s or cannon them later.',
+    reqs: { skills: { slayer: 50 } }, auto: true },
+  { id: 'slayer-58', name: '58 Slayer: cave horrors (black mask)', category: 'slayer', stage: 'early', wiki: 'Cave horror',
+    how: 'Cabin Fever for Mos Le\'Harmless, a witchwood icon, and a light source. The black mask (1/512) is your Slayer helmet.',
+    reqs: { skills: { slayer: 58 }, quests: ['Cabin Fever'] }, auto: true },
+  { id: 'slayer-65', name: '65 Slayer: dust devils', category: 'slayer', stage: 'mid', wiki: 'Dust devil',
+    how: 'Smoke Dungeon (Desert Treasure I started) or Catacombs. Burst them after Ancient Magicks for the fastest Slayer and Magic XP you will see.',
+    reqs: { skills: { slayer: 65 } }, auto: true },
+  { id: 'slayer-70', name: '70 Slayer: kurasks', category: 'slayer', stage: 'mid', wiki: 'Kurask',
+    how: 'Leaf-bladed weapons or broad bolts (unlock Broader fletching, 300 points). Drops include the rune crossbow and leaf-bladed battleaxe.',
+    reqs: { skills: { slayer: 70 } }, auto: true },
+  { id: 'slayer-75', name: '75 Slayer: gargoyles', category: 'slayer', stage: 'mid', wiki: 'Gargoyle',
+    how: 'Slayer Tower top floor with a rock hammer (buy from a Slayer master). Granite maul, mystic robes and steady alchables.',
+    reqs: { skills: { slayer: 75 } }, auto: true },
+  { id: 'slayer-80', name: '80 Slayer: nechryaels', category: 'slayer', stage: 'mid', wiki: 'Nechryael',
+    how: 'Catacombs greater nechryaels burst well; rune boots and plenty of herb and seed drops.',
+    reqs: { skills: { slayer: 80 } }, auto: true },
+  { id: 'slayer-85', name: '85 Slayer: abyssal demons', category: 'slayer', stage: 'mid', wiki: 'Abyssal demon',
+    how: 'Whip and abyssal dagger drops. Slayer Tower top floor, or the Catacombs for the ancient shards.',
+    reqs: { skills: { slayer: 85 } }, auto: true },
+  { id: 'slayer-87', name: '87 Slayer: kraken (trident)', category: 'slayer', stage: 'mid', wiki: 'Kraken',
+    how: 'Cave kraken in the Kraken Cove on task only. Bring a trident or water spells; the boss drops the trident and tentacle.',
+    reqs: { skills: { slayer: 87, magic: 75 } }, auto: true },
+  { id: 'slayer-91', name: '91 Slayer: Cerberus (primordial, pegasian, eternal)', category: 'slayer', stage: 'late', wiki: 'Cerberus',
+    how: 'Hellhound task from a master, Key master teleports from Slayer points. The crystals upgrade dragon boots, ranger boots and infinity boots.',
+    reqs: { skills: { slayer: 91 } }, auto: true },
+  { id: 'slayer-93', name: '93 Slayer: smoke devils (occult)', category: 'slayer', stage: 'late', wiki: 'Smoke devil',
+    how: 'Smoke Devil Dungeon with a facemask or Slayer helmet. Burst them; the occult necklace is 1/350 from the boss.',
+    reqs: { skills: { slayer: 93 } }, auto: true },
+  { id: 'slayer-95', name: '95 Slayer: Alchemical Hydra', category: 'slayer', stage: 'late', wiki: 'Alchemical Hydra',
+    how: 'Hydra task from Konar or an unlock at Karuulm. Boots of stone and the Kourend hard diary are near-mandatory.',
+    reqs: { skills: { slayer: 95 }, diaries: ['Kourend & Kebos:Elite'] }, auto: true },
+  { id: 'slayer-ring', name: 'Slayer ring unlocked', category: 'slayer', stage: 'early', wiki: 'Slayer ring',
+    how: '"Ring bling" for 300 Slayer points, then craft rings from gold and enchanted gems at 75 Crafting. Teleports to every Slayer area and your master.',
+    reqs: { skills: { crafting: 75 } } },
+  { id: 'bigger-and-badder', name: 'Bigger and Badder (superiors)', category: 'slayer', stage: 'mid', wiki: 'Superior slayer monster',
+    how: '150 Slayer points. Superiors drop the imbued heart, eternal gem and dust battlestaff.',
+    reqs: {} },
+];
+
+export const MILESTONE_BY_ID: Record<string, Milestone> = Object.fromEntries(MILESTONES.map((m) => [m.id, m]));
+export const STAGE_ORDER: Record<MilestoneStage, number> = { early: 0, mid: 1, late: 2 };

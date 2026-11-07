@@ -52,6 +52,25 @@ through without crashing.
 - Training / unlock / gather steps: manual check-off only.
 - Manual Done / Skip always win over imported data.
 
+## Milestones: gear, combat and Slayer
+
+The quest guide is the backbone, but an ironman also plans around gear and combat unlocks. `src/data/milestones.ts`
+holds a curated list (28 gear, 13 combat, 15 Slayer) with the real requirements (skills, combat level, quests, diary
+tiers, other milestones), an ironman-only route in a sentence or two, and a wiki link.
+
+- **Status from your data**: each requirement is checked against the import and Wise Old Man levels. Unlock-type
+  milestones (Piety, Ancient Magicks, Konar, "85 Slayer: abyssal demons", Combat 100…) complete automatically;
+  gear is never assumed and is ticked by hand.
+- **Ready now** on Next Up: up to three milestones you meet every requirement for, earliest stage first.
+- **Milestone browser** on Goals: Gear / Combat / Slayer tabs with done / ready / "n to go" and `Needs 58 Slayer
+  (you: 41)` chips, one tap to add as a goal.
+- **Goal types** now include `milestone` (prerequisite checklist derived from the data, manual ticks allowed) and
+  `combat` (combat level target from the standard formula). Pinned milestone goals get `Helps:` tags on the guide
+  steps that are their prerequisites, and a "ready now" line once nothing is missing.
+
+Edit the list in `src/data/milestones.ts`; `tests/milestones.test.ts` checks every quest and milestone reference
+and that no route mentions the GE or trading.
+
 ## Guide parser
 
 `src/lib/wikitext.ts` parses the wikitext (not rendered HTML). It splits the Questing Order table on `|-`, takes the
@@ -74,8 +93,9 @@ without the network.
 
 ```
 scripts/build-guide.ts   fetch wiki → src/data/{guide,questReqs,questNames}.json
-src/lib/                 wikitext parser, quest-requirements parser, WikiSync import, WOM client, completion logic
+src/data/milestones.ts   curated gear / combat / Slayer milestones
+src/lib/                 wikitext parser, quest-requirements parser, WikiSync import, WOM client, completion + milestone logic
 src/store/               zustand store persisted to localStorage (ironPlanner:v1)
-src/components/          Header, NextUp/StepCard, Goals, Todo, ImportDialog, FlagBadge
+src/components/          Header, NextUp/StepCard, MilestoneCard, Goals, Todo, ImportDialog, FlagBadge
 tests/                   vitest suites
 ```

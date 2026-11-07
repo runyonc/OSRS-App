@@ -8,6 +8,10 @@ import { QUEST_NAMES, wikiPageUrl } from '../lib/wiki';
 import { DIARY_TIERS } from '../lib/wikitext';
 import FlagBadges from './FlagBadge';
 import { MAX_PINNED_GOALS } from '../config';
+import { MILESTONES, MILESTONE_BY_ID, type MilestoneCategory } from '../data/milestones';
+import { milestoneStatus, combatLevel } from '../lib/milestones';
+import { useMilestoneContext, useMilestoneStatuses } from '../hooks/useMilestones';
+import MilestoneCard, { CATEGORY_STYLE } from './MilestoneCard';
 
 const DIARY_AREAS = ['Ardougne', 'Desert', 'Falador', 'Fremennik', 'Kandarin', 'Karamja', 'Kourend & Kebos', 'Lumbridge & Draynor', 'Morytania', 'Varrock', 'Western Provinces', 'Wilderness'];
 
@@ -33,7 +37,46 @@ export default function Goals() {
           <ul className="mt-1 space-y-1">{done.map((g) => <GoalCard key={g.id} goal={g} compact />)}</ul>
         </details>
       ) : null}
+      <MilestoneBrowser />
     </section>
+  );
+}
+
+const CATEGORIES: { id: MilestoneCategory; label: string; blurb: string }[] = [
+  { id: 'gear', label: 'Gear', blurb: 'What to wear next and how an ironman gets it.' },
+  { id: 'combat', label: 'Combat', blurb: 'Stat bases, prayers, spellbooks and boss access.' },
+  { id: 'slayer', label: 'Slayer', blurb: 'Level unlocks worth planning tasks around.' },
+];
+
+function MilestoneBrowser() {
+  const statuses = useMilestoneStatuses();
+  const [cat, setCat] = useState<MilestoneCategory>('gear');
+  const [showDone, setShowDone] = useState(false);
+  const list = statuses.filter((s) => s.milestone.category === cat && (showDone || !s.done));
+  const counts = (c: MilestoneCategory) => {
+    const all = statuses.filter((s) => s.milestone.category === c);
+    return { done: all.filter((s) => s.done).length, ready: all.filter((s) => s.ready).length, total: all.length };
+  };
+  return (
+    <div className="pt-2">
+      <h2 className="text-sm font-semibold">Milestones</h2>
+      <p className="text-xs text-zinc-400">{CATEGORIES.find((c) => c.id === cat)?.blurb} Ready ones also show on Next Up.</p>
+      <div className="mt-2 flex gap-1">
+        {CATEGORIES.map((c) => {
+          const n = counts(c.id);
+          return (
+            <button key={c.id} type="button" onClick={() => setCat(c.id)} className={`chip border ${cat === c.id ? 'border-amber-500 ' + CATEGORY_STYLE[c.id] : 'border-zinc-700 bg-zinc-800 text-zinc-300'}`}>
+              {c.label} {n.done}/{n.total}{n.ready ? ` · ${n.ready} ready` : ''}
+            </button>
+          );
+        })}
+        <label className="ml-auto flex items-center gap-1 text-[11px] text-zinc-400">
+          <input type="checkbox" checked={showDone} onChange={(e) => setShowDone(e.target.checked)} className="accent-amber-500" /> show done
+        </label>
+      </div>
+      <ul className="mt-2 space-y-2">{list.map((st) => <MilestoneCard key={st.milestone.id} status={st} />)}</ul>
+      {!list.length ? <p className="card mt-2 text-xs text-zinc-400">Everything here is done.</p> : null}
+    </div>
   );
 }
 
@@ -46,6 +89,8 @@ function AddGoal({ onDone }: { onDone: () => void }) {
   const [area, setArea] = useState('Ardougne');
   const [tier, setTier] = useState<DiaryTier>('Medium');
   const [text, setText] = useState('');
+  const [milestone, setMilestone] = useState(MILESTONES[0].id);
+  const [combat, setCombat] = useState(100);
   const questOptions = useMemo(() => Array.from(QUEST_NAMES).sort(), []);
 
   const submit = (e: React.FormEvent) => {
@@ -53,14 +98,16 @@ function AddGoal({ onDone }: { onDone: () => void }) {
     if (type === 'skill') addGoal({ type, target: `${skill}:${level}`, label: `${level} ${skillLabel(skill)}` });
     else if (type === 'quest') { if (!quest) return; addGoal({ type, target: quest, label: quest }); }
     else if (type === 'diary') addGoal({ type, target: `${area}:${tier}`, label: `${area} ${tier}` });
+    else if (type === 'milestone') addGoal({ type, target: milestone, label: MILESTONE_BY_ID[milestone].name });
+    else if (type === 'combat') addGoal({ type, target: String(combat), label: `Combat level ${combat}` });
     else { if (!text.trim()) return; addGoal({ type, target: text.trim(), label: text.trim() }); }
     onDone();
   };
 
   return (
     <form onSubmit={submit} className="card space-y-2 text-sm">
-      <div className="flex gap-1">
-        {(['skill', 'quest', 'diary', 'text'] as GoalType[]).map((t) => (
+      <div className="flex flex-wrap gap-1">
+        {(['skill', 'quest', 'diary', 'milestone', 'combat', 'text'] as GoalType[]).map((t) => (
           <button key={t} type="button" onClick={() => setType(t)} className={`chip border ${type === t ? 'border-amber-500 bg-amber-500/20 text-amber-200' : 'border-zinc-700 bg-zinc-800 text-zinc-300'}`}>{t}</button>
         ))}
       </div>
@@ -88,6 +135,18 @@ function AddGoal({ onDone }: { onDone: () => void }) {
           </select>
         </div>
       ) : null}
+      {type === 'milestone' ? (
+        <select className="input" value={milestone} onChange={(e) => setMilestone(e.target.value)} aria-label="Milestone">
+          {CATEGORIES.map((c) => (
+            <optgroup key={c.id} label={c.label}>
+              {MILESTONES.filter((m) => m.category === c.id).map((m) => <option key={m.id} value={m.id}>{m.name}</option>)}
+            </optgroup>
+          ))}
+        </select>
+      ) : null}
+      {type === 'combat' ? (
+        <input className="input w-32" type="number" min={4} max={126} value={combat} onChange={(e) => setCombat(Number(e.target.value))} aria-label="Combat level" />
+      ) : null}
       {type === 'text' ? <input className="input" placeholder="e.g. Fire cape, base 60s, full graceful" value={text} onChange={(e) => setText(e.target.value)} aria-label="Goal" /> : null}
       <div className="flex justify-end gap-1.5">
         <button type="button" className="btn-ghost" onClick={onDone}>Cancel</button>
@@ -107,14 +166,31 @@ function GoalCard({ goal, compact }: { goal: Goal; compact?: boolean }) {
   const toggleGoalDone = useStore((s) => s.toggleGoalDone);
   const togglePrereq = useStore((s) => s.togglePrereq);
   const addTodo = useStore((s) => s.addTodo);
+  const setMilestoneDone = useStore((s) => s.setMilestoneDone);
   const { levels } = useLevels();
   const [pinError, setPinError] = useState(false);
+  const mctx = useMilestoneContext();
+  const milestone = goal.type === 'milestone' ? MILESTONE_BY_ID[goal.target] : undefined;
+  const mstatus = useMemo(() => (milestone ? milestoneStatus(milestone, { ...mctx, ticked: goal.prereqsDone }) : undefined), [milestone, mctx, goal.prereqsDone]);
 
   // Auto progress
   let bar: number | undefined;
   let status = '';
   let autoDone = false;
-  if (goal.type === 'skill') {
+  if (goal.type === 'milestone') {
+    if (!milestone) status = 'Unknown milestone';
+    else if (mstatus) {
+      autoDone = mstatus.done;
+      bar = mstatus.reqs.length ? mstatus.reqs.filter((r) => r.met).length / mstatus.reqs.length : undefined;
+      status = mstatus.done ? 'Done' : mstatus.ready ? 'Ready now: every requirement met' : `${mstatus.missing.length} requirement${mstatus.missing.length === 1 ? '' : 's'} to go`;
+    }
+  } else if (goal.type === 'combat') {
+    const target = Number(goal.target);
+    const have = combatLevel(levels);
+    autoDone = have >= target;
+    bar = Math.min(1, have / target);
+    status = `${have} / ${target}`;
+  } else if (goal.type === 'skill') {
     const [skill, lvlStr] = goal.target.split(':');
     const target = Number(lvlStr);
     const have = levels[skill];
@@ -137,7 +213,9 @@ function GoalCard({ goal, compact }: { goal: Goal; compact?: boolean }) {
   // Prerequisites derived from the guide/wiki
   const prereqs = useMemo(() => {
     const list: { key: string; label: string; done: boolean; auto: boolean; link?: string }[] = [];
-    if (goal.type === 'quest') {
+    if (goal.type === 'milestone' && mstatus) {
+      for (const r of mstatus.reqs) list.push({ key: r.key, label: r.label, done: r.met, auto: r.auto, link: r.kind === 'quest' ? wikiPageUrl(r.key.slice(6)) : undefined });
+    } else if (goal.type === 'quest') {
       const r = reqs[goal.target];
       for (const s of r?.skills ?? []) {
         const have = levelOf(levels, s.skill);
@@ -154,7 +232,7 @@ function GoalCard({ goal, compact }: { goal: Goal; compact?: boolean }) {
       if (step) list.push({ key: `step:${step.id}`, label: `Guide step #${step.order + 1}: ${step.name}`, done: progress[step.id]?.done === true, auto: false });
     }
     return list.map((p) => ({ ...p, done: p.done || goal.prereqsDone.includes(p.key) }));
-  }, [goal, reqs, levels, player, steps, progress]);
+  }, [goal, reqs, levels, player, steps, progress, mstatus]);
 
   const flags = bottleneckFlags(goal.label, goal.type === 'skill' ? [goal.target.split(':')[0]] : prereqs.filter((p) => p.key.startsWith('skill:')).map((p) => p.key.split(':')[1]));
   const finished = goal.done || autoDone;
@@ -184,6 +262,7 @@ function GoalCard({ goal, compact }: { goal: Goal; compact?: boolean }) {
             {goal.type === 'quest' ? <a className="hover:underline" href={wikiPageUrl(goal.target)} target="_blank" rel="noreferrer">{goal.label}</a> : goal.label}
           </h3>
           {status ? <div className="mt-0.5 text-xs text-zinc-400">{status}</div> : null}
+          {milestone ? <p className="mt-1 text-xs text-zinc-300">{milestone.how} <a className="text-amber-400 hover:underline" href={wikiPageUrl(milestone.wiki)} target="_blank" rel="noreferrer">wiki ↗</a></p> : null}
           {bar !== undefined ? (
             <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded bg-zinc-800">
               <div className="h-full bg-amber-500" style={{ width: `${Math.round(bar * 100)}%` }} />
@@ -199,7 +278,7 @@ function GoalCard({ goal, compact }: { goal: Goal; compact?: boolean }) {
           >
             {goal.pinned ? 'Unpin' : pinError ? 'Max 3' : 'Pin'}
           </button>
-          <button className="btn-ghost !px-2" onClick={() => toggleGoalDone(goal.id)}>{goal.done ? 'Reopen' : 'Done'}</button>
+          <button className="btn-ghost !px-2" onClick={() => { toggleGoalDone(goal.id); if (milestone && !milestone.auto) setMilestoneDone(milestone.id, goal.done ? undefined : true); }}>{goal.done ? 'Reopen' : 'Done'}</button>
           <button className="btn-danger !px-2" onClick={() => removeGoal(goal.id)} aria-label="Remove goal">×</button>
         </div>
       </div>

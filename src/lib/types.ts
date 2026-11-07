@@ -81,12 +81,12 @@ export interface StepProgress {
   at: number;
 }
 
-export type GoalType = 'skill' | 'quest' | 'diary' | 'text';
+export type GoalType = 'skill' | 'quest' | 'diary' | 'milestone' | 'combat' | 'text';
 
 export interface Goal {
   id: string;
   type: GoalType;
-  /** skill: "agility:70"; quest: quest name; diary: "Ardougne:Medium"; text: free text */
+  /** skill: "agility:70"; quest: quest name; diary: "Ardougne:Medium"; milestone: milestone id; combat: "100"; text: free text */
   target: string;
   label: string;
   pinned: boolean;
@@ -106,6 +106,11 @@ export interface Todo {
   doneAt?: number;
   linkedStepId?: string;
   createdAt: number;
+}
+
+export interface MilestoneProgress {
+  done: boolean;
+  at: number;
 }
 
 export type Bottleneck = 'Herblore' | 'Farming' | 'Construction' | 'Runecraft' | 'Slayer';

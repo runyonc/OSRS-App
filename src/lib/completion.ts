@@ -2,6 +2,10 @@ import type { GuideStep, PlayerData, LiveLevels, StepProgress, QuestReqs, Goal, 
 import { findQuestKey } from './names';
 import { diaryTierSummary } from './wikisync';
 import { levelForXp } from './xp';
+import { MILESTONE_BY_ID } from '../data/milestones';
+import { milestoneQuestPrereqs, milestoneSkillPrereqs } from './milestones';
+
+const COMBAT_SKILLS = ['attack', 'strength', 'defence', 'hitpoints', 'ranged', 'magic', 'prayer'];
 
 export type Levels = Record<string, { level: number; xp?: number }>;
 
@@ -113,6 +117,40 @@ export interface NextUpInput {
   limit: number;
 }
 
+/** Step ids / quest names that move a goal forward, used for "Helps:" tags and the pinned-goal lines. */
+export function goalWants(goal: Goal, reqs: Record<string, QuestReqs>, levels: Levels, window: GuideStep[]): Set<string> {
+  const wanted = new Set<string>();
+  const wantTrain = (skill: string, need?: number) => {
+    for (const step of window) {
+      if (step.train?.skill !== skill) continue;
+      if (need !== undefined && levelOf(levels, skill) >= need) continue;
+      wanted.add(step.id);
+    }
+  };
+  if (goal.type === 'quest') {
+    wanted.add(goal.target);
+    for (const q of allPrereqQuests(goal.target, reqs)) wanted.add(q);
+  } else if (goal.type === 'skill') {
+    const [skill, lvl] = goal.target.split(':');
+    wantTrain(skill, Number(lvl));
+  } else if (goal.type === 'diary') {
+    const [area, tier] = goal.target.split(':');
+    for (const step of window) if (step.diary && step.diary.area === area && step.diary.tier === tier) wanted.add(step.id);
+  } else if (goal.type === 'milestone') {
+    const m = MILESTONE_BY_ID[goal.target];
+    if (m) {
+      for (const q of milestoneQuestPrereqs(m)) {
+        wanted.add(q);
+        for (const p of allPrereqQuests(q, reqs)) wanted.add(p);
+      }
+      for (const [skill, need] of Object.entries(milestoneSkillPrereqs(m))) wantTrain(skill, need);
+    }
+  } else if (goal.type === 'combat') {
+    for (const skill of COMBAT_SKILLS) wantTrain(skill);
+  }
+  return wanted;
+}
+
 /**
  * Next Up: in-progress quests first (guide order), then the first N incomplete, unskipped steps in guide order.
  * Blocked steps are kept, with their missing requirements attached.
@@ -124,7 +162,7 @@ export function selectNextUp(input: NextUpInput): NextUpItem[] {
   const rest = pending.filter((s) => !isInProgress(s, player));
   const ordered = [...inProgress, ...rest];
   const window = ordered.slice(0, Math.max(limit, 20));
-  const helpsIndex = helpsMap(goals, reqs, player, progress, window);
+  const helpsIndex = helpsMap(goals, reqs, player, progress, levels, window);
   return ordered.slice(0, limit).map((step) => ({
     step,
     inProgress: isInProgress(step, player),
@@ -134,20 +172,10 @@ export function selectNextUp(input: NextUpInput): NextUpItem[] {
 }
 
 /** For each step in the next-20 window, the pinned goals it is a prerequisite of. */
-function helpsMap(goals: Goal[], reqs: Record<string, QuestReqs>, player: PlayerData | null, progress: Record<string, StepProgress>, window: GuideStep[]): Map<string, string[]> {
+function helpsMap(goals: Goal[], reqs: Record<string, QuestReqs>, player: PlayerData | null, progress: Record<string, StepProgress>, levels: Levels, window: GuideStep[]): Map<string, string[]> {
   const map = new Map<string, string[]>();
   for (const goal of goals.filter((g) => g.pinned && !g.done)) {
-    const wanted = new Set<string>();
-    if (goal.type === 'quest') {
-      wanted.add(goal.target);
-      for (const q of allPrereqQuests(goal.target, reqs)) wanted.add(q);
-    } else if (goal.type === 'skill') {
-      const [skill] = goal.target.split(':');
-      for (const step of window) if (step.train?.skill === skill) wanted.add(step.id);
-    } else if (goal.type === 'diary') {
-      const [area, tier] = goal.target.split(':');
-      for (const step of window) if (step.diary && step.diary.area === area && step.diary.tier === tier) wanted.add(step.id);
-    }
+    const wanted = goalWants(goal, reqs, levels, window);
     for (const step of window) {
       const hit = wanted.has(step.id) || (step.quest !== undefined && wanted.has(step.quest));
       if (!hit) continue;
