@@ -4,10 +4,13 @@ import { xpForLevel } from '../src/lib/xp';
 import { useStore } from '../src/store';
 
 describe('xp calculator', () => {
-  it('uses the real XP table', () => {
+  it('matches the wiki Experience table', () => {
     expect(xpForLevel(2)).toBe(83);
     expect(xpForLevel(50)).toBe(101333);
+    expect(xpForLevel(57)).toBe(203254);
+    expect(xpForLevel(77)).toBe(1475581);
     expect(xpForLevel(99)).toBe(13034431);
+    expect(xpForLevel(126)).toBe(188884740);
   });
   it('plans from current XP to a target level', () => {
     const p = planXp(300000, 70);

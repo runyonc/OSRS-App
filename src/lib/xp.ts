@@ -1,4 +1,10 @@
-/** Standard OSRS XP table: XP_TABLE[level] = XP needed to be that level (index 1 = 0 XP). */
+import xpTableJson from '../data/xpTable.json';
+
+/**
+ * XP_TABLE[level] = XP at which that level starts (index 1 = 0 XP).
+ * Levels 1–99 come from the OSRS Wiki's Experience page (https://oldschool.runescape.wiki/w/Experience);
+ * virtual levels 100–126 use the same formula, which reproduces the wiki table exactly.
+ */
 export const XP_TABLE: number[] = (() => {
   const table = [0, 0];
   let points = 0;
@@ -6,8 +12,11 @@ export const XP_TABLE: number[] = (() => {
     points += Math.floor(lvl + 300 * Math.pow(2, lvl / 7));
     table[lvl + 1] = Math.floor(points / 4);
   }
+  for (const [lvl, xp] of Object.entries(xpTableJson as Record<string, number>)) table[Number(lvl)] = xp;
   return table;
 })();
+
+export const XP_TABLE_SOURCE = 'https://oldschool.runescape.wiki/w/Experience';
 
 export function xpForLevel(level: number): number {
   if (level <= 1) return 0;

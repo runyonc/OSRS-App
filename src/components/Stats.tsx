@@ -1,9 +1,9 @@
-import { useMemo, useState } from 'react';
+import { Fragment, useMemo, useState } from 'react';
 import { useStore } from '../store';
 import { useLevels, useHeaderStats, formatAge } from '../hooks/useDerived';
 import { levelOf, totalLevel } from '../lib/completion';
 import { combatLevel } from '../lib/milestones';
-import { skillLabel, xpForLevel, levelForXp, SKILLS } from '../lib/xp';
+import { skillLabel, xpForLevel, levelForXp, SKILLS, XP_TABLE_SOURCE } from '../lib/xp';
 import { planXp, actionsNeeded, hoursNeeded, STATS_ORDER, GEAR_SLOTS } from '../lib/xpcalc';
 import { wikiPageUrl, trainingUrl } from '../lib/wiki';
 import ItemInput from './ItemInput';
@@ -25,18 +25,33 @@ export default function Stats() {
 function XpTable() {
   const { levels } = useLevels();
   const current = new Set(Object.keys(levels).map((s) => levelOf(levels, s)));
-  const rows = Array.from({ length: 98 }, (_, i) => i + 2);
+  const rows = Array.from({ length: 99 }, (_, i) => i + 1);
   return (
     <details className="card">
       <summary className="cursor-pointer font-display text-sm font-semibold">XP table</summary>
-      <p className="mt-1 text-[11px] text-zinc-500">XP at which each level starts. Levels you currently sit at in some skill are highlighted.</p>
-      <div className="mt-2 grid grid-cols-2 gap-x-4 text-xs tabular-nums sm:grid-cols-3">
-        {rows.map((lvl) => (
-          <div key={lvl} className={`flex justify-between border-b border-zinc-800/60 py-0.5 ${current.has(lvl) ? 'text-amber-300' : 'text-zinc-300'}`}>
-            <span>{lvl}</span>
-            <span>{fmt(xpForLevel(lvl))}</span>
-          </div>
-        ))}
+      <p className="mt-1 text-[11px] text-zinc-500">
+        From the wiki's <a className="text-amber-400 hover:underline" href={XP_TABLE_SOURCE} target="_blank" rel="noreferrer">Experience</a> page: the XP each level starts at and the gap from the level before. Levels you sit at in some skill are highlighted.
+      </p>
+      <div className="mt-2 overflow-x-auto">
+        <table className="w-full text-xs tabular-nums">
+          <thead className="text-[10px] uppercase tracking-wide text-zinc-500">
+            <tr><th className="py-1 text-left">Lvl</th><th className="py-1 text-right">Exp.</th><th className="py-1 text-right">Diff</th><th className="w-3" /><th className="py-1 text-left">Lvl</th><th className="py-1 text-right">Exp.</th><th className="py-1 text-right">Diff</th></tr>
+          </thead>
+          <tbody>
+            {Array.from({ length: 50 }, (_, i) => [rows[i], rows[i + 50]] as const).map(([a, b]) => (
+              <tr key={a} className="border-b border-zinc-800/60">
+                {[a, b].map((lvl, idx) => lvl ? (
+                  <Fragment key={lvl}>
+                    {idx === 1 ? <td /> : null}
+                    <td className={`py-0.5 ${current.has(lvl) ? 'font-semibold text-amber-300' : 'text-zinc-300'}`}>{lvl}</td>
+                    <td className={`py-0.5 text-right ${current.has(lvl) ? 'text-amber-300' : 'text-zinc-300'}`}>{fmt(xpForLevel(lvl))}</td>
+                    <td className="py-0.5 text-right text-zinc-500">{lvl > 1 ? fmt(xpForLevel(lvl) - xpForLevel(lvl - 1)) : '—'}</td>
+                  </Fragment>
+                ) : <Fragment key={`e${idx}`}><td /><td /><td /><td /></Fragment>)}
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </details>
   );
